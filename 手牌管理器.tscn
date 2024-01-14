@@ -1,0 +1,51 @@
+[gd_scene load_steps=5 format=3 uid="uid://d4nkrk234va2i"]
+
+[ext_resource type="Script" path="res://手牌管理器.gd" id="1_vgkom"]
+[ext_resource type="PackedScene" uid="uid://tautr4ao3iu8" path="res://扑克牌.tscn" id="1_wpe6d"]
+
+[sub_resource type="Curve" id="Curve_610ok"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.5, 0.5), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve2D" id="Curve2D_c4sjh"]
+_data = {
+"points": PackedVector2Array(-23.5969, 74.7636, 23.5969, -74.7636, 267, 568.721, -140.817, -1, 140.817, 1, 574, 433, -27.3724, -67.6955, 27.3724, 67.6955, 875, 565.326)
+}
+point_count = 3
+
+[node name="手牌管理器" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vgkom")
+"曲线" = SubResource("Curve_610ok")
+"扑克牌" = ExtResource("1_wpe6d")
+
+[node name="手牌点" type="Marker2D" parent="."]
+position = Vector2(577, 719)
+
+[node name="中心点" type="Marker2D" parent="."]
+position = Vector2(577, 254)
+
+[node name="发牌按钮" type="Button" parent="."]
+layout_mode = 0
+offset_left = 911.0
+offset_top = 41.0
+offset_right = 1105.0
+offset_bottom = 123.0
+text = "发牌"
+
+[node name="手牌线" type="Path2D" parent="."]
+position = Vector2(10, 223)
+scale = Vector2(1, 0.589041)
+curve = SubResource("Curve2D_c4sjh")
+
+[node name="手牌线点" type="PathFollow2D" parent="手牌线"]
+position = Vector2(267, 568.721)
+rotation = -0.454002
+rotates = false
+
+[connection signal="button_down" from="发牌按钮" to="." method="_on_发牌按钮_button_down"]
