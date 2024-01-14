@@ -1,6 +1,7 @@
 extends Panel
 
-signal 鼠标进入()
+signal 鼠标进入(对象:Panel)
+signal 鼠标离开(对象:Panel)
 
 @export var 运动曲线:Curve
 
@@ -75,6 +76,12 @@ func 旋转(delta):
 			rotation_degrees-=旋转速度*旋转差值*delta
 			if(旋转进度>=0.999):
 				是否旋转=false
+
+func 鼠标进了():
+	鼠标进入.emit(self)
+
+func 鼠标出了():
+	鼠标离开.emit(self)
 
 func _process(delta):
 	移动(delta)

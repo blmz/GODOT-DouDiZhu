@@ -33,3 +33,6 @@ offset_right = 52.5
 offset_bottom = 75.0
 texture = ExtResource("2_tk1yo")
 expand_mode = 1
+
+[connection signal="mouse_entered" from="." to="." method="鼠标进了"]
+[connection signal="mouse_exited" from="." to="." method="鼠标出了"]

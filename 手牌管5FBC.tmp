@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://tautr4ao3iu8" path="res://扑克牌.tscn" id="1_wpe6d"]
 
 [sub_resource type="Curve" id="Curve_g4kp0"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.502703, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.508108, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 
 [sub_resource type="Curve2D" id="Curve2D_c4sjh"]
@@ -23,7 +23,6 @@ grow_vertical = 2
 script = ExtResource("1_vgkom")
 "选择分散曲线" = SubResource("Curve_g4kp0")
 "扑克牌" = ExtResource("1_wpe6d")
-"选择分散距离" = 50.0
 
 [node name="手牌点" type="Marker2D" parent="."]
 position = Vector2(577, 719)
