@@ -6,9 +6,11 @@ extends Control
 @onready var 手牌线点 = $"手牌线/手牌线点"
 @onready var 当前选择 = $"当前选择"
 
+@export var 选择上升曲线:Curve
 @export var 选择分散曲线:Curve
 @export var 扑克牌:PackedScene
 @export var 手牌列表:Array[Node]
+@export_range(0,100) var 选择上升距离:float
 @export_range(0,100) var 选择分散距离:float
 
 var 点数列表:Array[String] = ["3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A", "2", "小王", "大王"]
@@ -35,12 +37,34 @@ func 选牌位置计算(选牌:Node)->Array[Vector2]:
 	var 手牌数量 = 手牌列表.size()
 	var 选牌编号 = 手牌列表.find(选牌)
 	var 计算后位置 :Array[Vector2]=计算位置(手牌数量)
-	for i in range(-3,4):
-		if(选牌编号+i<0 or 选牌编号+i>手牌数量-1):
-			continue
-		计算后位置[选牌编号+i].y-=选择分散距离*选择分散曲线.sample((1.0/6.0)*(i+3))
-		#print("i:",i,"  选牌编号:",选牌编号," ， 曲线点数：",选择分散曲线.sample(1.0/6.0)*(i+3))
+	var 左右最大牌数 =float(max(选牌编号,手牌数量-选牌编号-1))
+	var 曲线段长:float = 1.0/(左右最大牌数*2.0)
+	for 距中段数 in range(1,左右最大牌数+1):
+		if (选牌编号-距中段数>=0):
+			手牌线点.progress_ratio=1.0/(手牌数量+1)*(选牌编号-距中段数+1)
+			手牌线点.progress -= 选择分散距离*选择分散曲线.sample(曲线段长*距中段数)
+			计算后位置[选牌编号-距中段数]=手牌线点.position
+		if (选牌编号+距中段数<=手牌数量-1):
+			手牌线点.progress_ratio=1.0/(手牌数量+1)*(选牌编号+距中段数+1)
+			手牌线点.progress += 选择分散距离*选择分散曲线.sample(曲线段长*距中段数)
+			计算后位置[选牌编号+距中段数]=手牌线点.position
+	#选牌显示排序(选牌编号)
+	#for i in range(-3,4):
+		#if(选牌编号+i<0 or 选牌编号+i>手牌数量-1):
+			#continue
+		#计算后位置[选牌编号+i].y-=选择上升距离*选择上升曲线.sample((1.0/6.0)*(i+3))
+		#print("i:",i,"  选牌编号:",选牌编号," ， 曲线点数：",选择上升曲线.sample(1.0/6.0)*(i+3))
 	return 计算后位置
+
+func 选牌显示排序(选牌位置=0):
+	var 层数=0
+	for i in range(选牌位置):
+		手牌列表[i].z_index=层数
+		层数+=1
+	for i in range(选牌位置+1,手牌列表.size()):
+		层数-=1
+		手牌列表[i].z_index=层数
+	手牌列表[选牌位置].z_index=99
 
 #按手牌数量在手牌线上计算每一个牌的位置点，使其平均分布在线上
 func 计算位置(手牌数量:int)->Array[Vector2]:
@@ -49,6 +73,7 @@ func 计算位置(手牌数量:int)->Array[Vector2]:
 	for i in range(1,手牌数量+1):
 		手牌线点.progress_ratio=分段长*i
 		位置列表.append(手牌线点.position)
+		手牌列表[i-1].z_index=0
 	return 位置列表
 
 func 发牌(牌名="",位置:Vector2=手牌点.position,正面=true):
@@ -83,7 +108,7 @@ func 鼠标进入手牌(对象:Panel):
 
 func 鼠标离开手牌(对象:Panel):
 	当前选择牌=null
-	对象.z_index=0
+	对象.top_level=false
 	重置位置(计算位置(手牌列表.size()))
 
 func _on_发牌按钮_button_down():

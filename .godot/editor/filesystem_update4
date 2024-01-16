@@ -1,6 +1,3 @@
 res://扑克牌.tscn
-res://扑克牌.gd
 res://手牌管理器.tscn
 res://手牌管理器.gd
-res://Node2D.gd
-res://node_2d.tscn

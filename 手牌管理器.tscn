@@ -3,9 +3,9 @@
 [ext_resource type="Script" path="res://手牌管理器.gd" id="1_vgkom"]
 [ext_resource type="PackedScene" uid="uid://tautr4ao3iu8" path="res://扑克牌.tscn" id="1_wpe6d"]
 
-[sub_resource type="Curve" id="Curve_g4kp0"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.502703, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 3
+[sub_resource type="Curve" id="Curve_dg5hf"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
 
 [sub_resource type="Curve2D" id="Curve2D_c4sjh"]
 _data = {
@@ -21,7 +21,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_vgkom")
-"选择分散曲线" = SubResource("Curve_g4kp0")
+"选择上升曲线" = SubResource("Curve_dg5hf")
+"选择分散曲线" = SubResource("Curve_dg5hf")
 "扑克牌" = ExtResource("1_wpe6d")
 "选择分散距离" = 50.0
 
@@ -48,6 +49,7 @@ curve = SubResource("Curve2D_c4sjh")
 position = Vector2(267, 568.721)
 rotation = -0.454002
 rotates = false
+loop = false
 
 [node name="当前选择" type="Label" parent="."]
 layout_mode = 0
