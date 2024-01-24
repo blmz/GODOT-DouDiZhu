@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://d4nkrk234va2i"]
 
-[ext_resource type="Script" path="res://手牌管理器.gd" id="1_vgkom"]
-[ext_resource type="PackedScene" uid="uid://tautr4ao3iu8" path="res://扑克牌.tscn" id="1_wpe6d"]
+[ext_resource type="Script" path="res://脚本/手牌管理器.gd" id="1_tnola"]
+[ext_resource type="PackedScene" uid="uid://tautr4ao3iu8" path="res://场景/扑克牌.tscn" id="2_io782"]
 
 [sub_resource type="Curve" id="Curve_dg5hf"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -20,10 +20,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_vgkom")
+script = ExtResource("1_tnola")
 "选择上升曲线" = SubResource("Curve_dg5hf")
 "选择分散曲线" = SubResource("Curve_dg5hf")
-"扑克牌" = ExtResource("1_wpe6d")
+"扑克牌" = ExtResource("2_io782")
 "选择分散距离" = 50.0
 
 [node name="手牌点" type="Marker2D" parent="."]

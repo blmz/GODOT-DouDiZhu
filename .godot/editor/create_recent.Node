@@ -1,3 +1,4 @@
+TextureRect
 Label
 LineEdit
 Button
@@ -7,5 +8,4 @@ Path2D
 Marker2D
 Control
 HBoxContainer
-TextureRect
 Panel

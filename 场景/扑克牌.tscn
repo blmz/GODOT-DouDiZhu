@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://tautr4ao3iu8"]
+[gd_scene load_steps=6 format=3 uid="uid://tautr4ao3iu8"]
 
 [ext_resource type="Texture2D" uid="uid://br58iaol21te" path="res://扑克牌图片/大王.jpg" id="1_glnhf"]
-[ext_resource type="Script" path="res://扑克牌.gd" id="1_ov86u"]
-[ext_resource type="Texture2D" uid="uid://dct4pt82mxnaa" path="res://扑克牌背.png" id="2_tk1yo"]
+[ext_resource type="Script" path="res://脚本/扑克牌.gd" id="1_pdswt"]
+[ext_resource type="Texture2D" uid="uid://dct4pt82mxnaa" path="res://UI图片/扑克牌背.png" id="2_tk1yo"]
+[ext_resource type="Texture2D" uid="uid://byx86wlve6ihy" path="res://UI图片/蓝色边框.png" id="4_ymp43"]
 
 [sub_resource type="Curve" id="Curve_xfad0"]
 _data = [Vector2(0, 1), -2.03297, -0.203297, 0, 0, Vector2(1, 0), -2.42645, 0.0, 0, 0]
@@ -11,7 +12,7 @@ point_count = 2
 [node name="扑克牌" type="Panel"]
 offset_right = 1.31999
 offset_bottom = 0.311996
-script = ExtResource("1_ov86u")
+script = ExtResource("1_pdswt")
 "运动曲线" = SubResource("Curve_xfad0")
 "旋转速度" = 50.98
 
@@ -31,6 +32,16 @@ offset_top = -75.0
 offset_right = 52.5
 offset_bottom = 75.0
 texture = ExtResource("2_tk1yo")
+expand_mode = 1
+
+[node name="选择发光框" type="TextureRect" parent="."]
+visible = false
+layout_mode = 0
+offset_left = -52.0
+offset_top = -75.0
+offset_right = 53.0
+offset_bottom = 75.0
+texture = ExtResource("4_ymp43")
 expand_mode = 1
 
 [connection signal="mouse_entered" from="." to="." method="鼠标进了"]

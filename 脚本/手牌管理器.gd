@@ -15,14 +15,16 @@ extends Control
 
 var 点数列表:Array[String] = ["3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A", "2", "小王", "大王"]
 var 花色列表:Array[String] = ["红桃","方片","黑桃","梅花"]
-var 初始牌堆:Array[String] 
+
+var 初始牌堆:Array[扑克牌类]
+
 var 当前选择牌:Node:
 	set(值):#当值被改变时执行函数
 		当前选择牌=值
 		if(值==null):
 			当前选择.text="未选择"
 		else:
-			当前选择.text=值.牌
+			当前选择.text=值.牌.花色+值.牌.点数
 
 #重新把牌移动到位置列表中对应的位置
 func 重置位置(位置列表:Array[Vector2]):
@@ -76,27 +78,35 @@ func 计算位置(手牌数量:int)->Array[Vector2]:
 		手牌列表[i-1].z_index=0
 	return 位置列表
 
-func 发牌(牌名="",位置:Vector2=手牌点.position,正面=true):
+func 发牌(牌型:扑克牌类,位置:Vector2=手牌点.position,正面=true):
 	var 牌=扑克牌.instantiate()
 	add_child(牌)
 	牌.connect("鼠标进入",鼠标进入手牌)
 	牌.connect("鼠标离开",鼠标离开手牌)
 	牌.position=中心点.position
 	牌.rotation_degrees=0
-	牌.更新牌(牌名)
+	牌.更新牌(牌型)
 	if!正面:
 		牌.翻面()
 	手牌列表.append(牌)
 	重置位置(计算位置(手牌列表.size()))
 
+func 排序手牌():
+	var 手牌复制:Array[Node]=手牌列表
+	var 位置列表:Array[Vector2]=计算位置(手牌复制.size())
+	var 空列表:Array[Node]
+	
+	for 点数 in 点数列表:
+		for 复制牌 in 手牌复制:
+			if(复制牌.点数==点数):
+				pass
+
 func 初始化牌堆():
-	var 牌=""
 	for 花色 in 花色列表:
 		for i in range(13):
-			牌=花色+点数列表[i]
-			初始牌堆.append(牌)
-	初始牌堆.append("小王")
-	初始牌堆.append("大王")
+			初始牌堆.append(扑克牌类.new(花色,点数列表[i]))
+	初始牌堆.append(扑克牌类.new("","大王"))
+	初始牌堆.append(扑克牌类.new("","小王"))
 	#print(初始牌堆,"牌堆大小为",初始牌堆.size())
 	初始牌堆.shuffle()#打乱牌堆
 	#print(初始牌堆,"牌堆大小为",初始牌堆.size())

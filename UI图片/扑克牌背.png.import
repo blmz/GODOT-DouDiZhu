@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dct4pt82mxnaa"
-path="res://.godot/imported/扑克牌背.png-2609f058fea9cb12d6bac01133d98853.ctex"
+path="res://.godot/imported/扑克牌背.png-3b7d6f02413415043b8e552d0bf4ecf0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://扑克牌背.png"
-dest_files=["res://.godot/imported/扑克牌背.png-2609f058fea9cb12d6bac01133d98853.ctex"]
+source_file="res://UI图片/扑克牌背.png"
+dest_files=["res://.godot/imported/扑克牌背.png-3b7d6f02413415043b8e552d0bf4ecf0.ctex"]
 
 [params]
 
