@@ -10,37 +10,34 @@ _data = [Vector2(0, 1), -2.03297, -0.203297, 0, 0, Vector2(1, 0), -2.42645, 0.0,
 point_count = 2
 
 [node name="扑克牌" type="Panel"]
-offset_right = 1.31999
-offset_bottom = 0.311996
+self_modulate = Color(1, 1, 1, 0)
+offset_left = -52.0
+offset_top = -75.0
+offset_right = 53.0
+offset_bottom = 75.0
+pivot_offset = Vector2(52.5, 75)
 script = ExtResource("1_pdswt")
 "运动曲线" = SubResource("Curve_xfad0")
-"旋转速度" = 50.98
 
 [node name="图片" type="TextureRect" parent="."]
 layout_mode = 0
-offset_left = -52.5
-offset_top = -75.0
-offset_right = 52.5
-offset_bottom = 75.0
+offset_right = 105.0
+offset_bottom = 150.0
 texture = ExtResource("1_glnhf")
 
 [node name="牌背" type="TextureRect" parent="."]
 visible = false
 layout_mode = 0
-offset_left = -52.5
-offset_top = -75.0
-offset_right = 52.5
-offset_bottom = 75.0
+offset_right = 105.0
+offset_bottom = 150.0
 texture = ExtResource("2_tk1yo")
 expand_mode = 1
 
 [node name="选择发光框" type="TextureRect" parent="."]
 visible = false
 layout_mode = 0
-offset_left = -52.0
-offset_top = -75.0
-offset_right = 53.0
-offset_bottom = 75.0
+offset_right = 105.0
+offset_bottom = 150.0
 texture = ExtResource("4_ymp43")
 expand_mode = 1
 

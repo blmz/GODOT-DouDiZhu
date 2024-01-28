@@ -22,24 +22,25 @@ var 目标角度:float
 
 var 文件地址="res://扑克牌图片/"
 var 牌:扑克牌类
-var 是否正面=true
 
-func 更新牌(牌参数):
+func 更新牌(牌参数:扑克牌类):
 	if(牌参数!=null):
 		牌=牌参数
 		图片.texture=load(文件地址+牌.花色+牌.点数+".jpg")
 
+#调整手牌正反面
 func 翻面():
-	图片.visible=!是否正面
-	牌背.visible=是否正面
-	是否正面=!是否正面
+	图片.visible=false
+	牌背.visible=true
 
+#移动命令发布
 func 移动到(位置:Vector2):
 	目标位置=位置
 	目标距离 = position.distance_to(位置)
 	运动方向 = (位置-position).normalized()
 	是否运动=true
 
+#移动动作,每一帧进行
 func 移动(delta):
 	if 是否运动:
 		var 移动进度=(目标距离-position.distance_to(目标位置))/目标距离
@@ -48,6 +49,7 @@ func 移动(delta):
 		if(移动进度>=0.99):
 			是否运动=false
 
+#旋转命令发布
 func 旋转到(角度:float=0):
 	if (rotation_degrees>180):
 		rotation_degrees-=360
@@ -61,6 +63,7 @@ func 旋转到(角度:float=0):
 	if(角度差值!=0):
 		是否旋转=true
 
+#旋转动作,每一帧进行
 func 旋转(delta):
 	if 是否旋转:
 		if(角度差值>0):
@@ -77,9 +80,6 @@ func 旋转(delta):
 			rotation_degrees-=旋转速度*旋转差值*delta
 			if(旋转进度>=0.999):
 				是否旋转=false
-
-func 选中发光():
-	pass
 
 func 鼠标进了():
 	鼠标进入.emit(self)

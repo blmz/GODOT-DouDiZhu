@@ -1,10 +1,6 @@
-res://扑克牌.tscn
-res://手牌管理器.tscn
-res://扑克牌.gd
-res://手牌管理器.gd
-res://脚本/扑克牌类.gd
-res://场景/node_2d.tscn
-res://脚本/扑克牌.gd
-res://场景/手牌管理器.tscn
-res://脚本/手牌管理器.gd
 res://场景/扑克牌.tscn
+res://场景/手牌管理器.tscn
+res://场景/牌数显示.tscn
+res://脚本/手牌管理器.gd
+res://脚本/扑克牌.gd
+res://脚本/牌数显示.gd

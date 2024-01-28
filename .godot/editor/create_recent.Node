@@ -1,11 +1,12 @@
-TextureRect
+Control
 Label
+TextureRect
+Timer
 LineEdit
 Button
 CanvasLayer
 PathFollow2D
 Path2D
 Marker2D
-Control
 HBoxContainer
 Panel

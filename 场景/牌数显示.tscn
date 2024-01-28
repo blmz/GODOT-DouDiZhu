@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://c0cg58jpcboa4"]
+
+[ext_resource type="Texture2D" uid="uid://dct4pt82mxnaa" path="res://UI图片/扑克牌背.png" id="1_k4t3j"]
+[ext_resource type="Script" path="res://脚本/牌数显示.gd" id="2_1dicf"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_maokf"]
+font_size = 25
+shadow_size = 2
+shadow_color = Color(0.00392157, 0, 0.00392157, 1)
+
+[node name="牌数显示" type="TextureRect"]
+anchors_preset = -1
+anchor_right = 0.05
+anchor_bottom = 0.13
+offset_left = -30.0
+offset_top = -42.0
+offset_right = -28.6
+offset_bottom = -42.24
+pivot_offset = Vector2(30, 42)
+texture = ExtResource("1_k4t3j")
+expand_mode = 1
+script = ExtResource("2_1dicf")
+
+[node name="牌数" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.24
+anchor_right = 0.971
+anchor_bottom = 0.793
+offset_right = 0.0449905
+offset_bottom = 0.0499954
+text = "123"
+label_settings = SubResource("LabelSettings_maokf")
+horizontal_alignment = 1
+vertical_alignment = 1

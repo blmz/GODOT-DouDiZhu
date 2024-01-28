@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://d4nkrk234va2i"]
+[gd_scene load_steps=6 format=3 uid="uid://d4nkrk234va2i"]
 
 [ext_resource type="Script" path="res://脚本/手牌管理器.gd" id="1_tnola"]
 [ext_resource type="PackedScene" uid="uid://tautr4ao3iu8" path="res://场景/扑克牌.tscn" id="2_io782"]
+[ext_resource type="PackedScene" uid="uid://c0cg58jpcboa4" path="res://场景/牌数显示.tscn" id="3_dwm8v"]
 
 [sub_resource type="Curve" id="Curve_dg5hf"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -9,7 +10,7 @@ point_count = 2
 
 [sub_resource type="Curve2D" id="Curve2D_c4sjh"]
 _data = {
-"points": PackedVector2Array(-23.5969, 74.7636, 23.5969, -74.7636, 267, 568.721, -140.817, -1, 140.817, 1, 574, 433, -27.3724, -67.6955, 27.3724, 67.6955, 875, 565.326)
+"points": PackedVector2Array(-49.024, 107.139, 49.024, -107.139, -348, 137.512, -140.817, -1, 140.817, 1, 0, -1.69763, -73.9888, -128.849, 73.9888, 128.849, 345, 130.721)
 }
 point_count = 3
 
@@ -23,39 +24,150 @@ grow_vertical = 2
 script = ExtResource("1_tnola")
 "选择上升曲线" = SubResource("Curve_dg5hf")
 "选择分散曲线" = SubResource("Curve_dg5hf")
-"扑克牌" = ExtResource("2_io782")
 "选择分散距离" = 50.0
+"扑克牌" = ExtResource("2_io782")
 
-[node name="手牌点" type="Marker2D" parent="."]
-position = Vector2(577, 719)
+[node name="牌堆牌数显示" parent="." instance=ExtResource("3_dwm8v")]
+layout_mode = 1
+anchor_left = 0.505
+anchor_top = 0.356
+anchor_right = 0.505
+anchor_bottom = 0.356
+offset_left = -52.76
+offset_top = -74.688
+offset_right = 52.24
+offset_bottom = 75.312
 
-[node name="中心点" type="Marker2D" parent="."]
-position = Vector2(577, 254)
+[node name="中心点" type="Control" parent="."]
+layout_mode = 1
+anchor_left = 0.459
+anchor_top = 0.241
+anchor_right = 0.459
+anchor_bottom = 0.241
+offset_left = 0.231995
+offset_top = -0.168015
+offset_right = 0.231995
+offset_bottom = -0.168015
 
-[node name="发牌按钮" type="Button" parent="."]
-layout_mode = 0
-offset_left = 911.0
-offset_top = 41.0
-offset_right = 1105.0
-offset_bottom = 123.0
-text = "发牌"
+[node name="上家点" type="Control" parent="."]
+layout_mode = 1
+anchor_left = -0.135
+anchor_top = -0.205
+anchor_right = -0.135
+anchor_bottom = -0.205
+offset_left = -0.479996
+offset_top = -0.159988
+offset_right = -0.479996
+offset_bottom = -0.159988
 
-[node name="手牌线" type="Path2D" parent="."]
-position = Vector2(10, 223)
+[node name="下家点" type="Control" parent="."]
+layout_mode = 1
+anchor_left = 1.128
+anchor_top = -0.205
+anchor_right = 1.128
+anchor_bottom = -0.205
+offset_left = -0.456055
+offset_top = -0.159988
+offset_right = -0.456055
+offset_bottom = -0.159988
+
+[node name="手牌点" type="Control" parent="."]
+layout_mode = 1
+anchor_left = 0.501
+anchor_top = 1.642
+anchor_right = 0.501
+anchor_bottom = 1.642
+offset_left = -0.151978
+offset_top = -0.0159912
+offset_right = -0.152039
+offset_bottom = -0.0159912
+
+[node name="手牌排列线" type="Control" parent="."]
+layout_mode = 1
+anchor_left = 0.501
+anchor_top = 0.745
+anchor_right = 0.501
+anchor_bottom = 0.745
+offset_left = -0.152039
+offset_top = 0.23996
+offset_right = -0.152039
+offset_bottom = 0.23996
+
+[node name="手牌线" type="Path2D" parent="手牌排列线"]
+position = Vector2(0, -54)
 scale = Vector2(1, 0.589041)
 curve = SubResource("Curve2D_c4sjh")
 
-[node name="手牌线点" type="PathFollow2D" parent="手牌线"]
-position = Vector2(267, 568.721)
+[node name="手牌线点" type="PathFollow2D" parent="手牌排列线/手牌线"]
+position = Vector2(-348, 137.512)
 rotation = -0.454002
 rotates = false
 loop = false
 
-[node name="当前选择" type="Label" parent="."]
-layout_mode = 0
-offset_left = 781.0
-offset_top = 41.0
-offset_right = 821.0
-offset_bottom = 64.0
+[node name="发牌按钮" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.905
+anchor_top = 0.644
+anchor_right = 0.995
+anchor_bottom = 0.691
+offset_left = -0.560059
+offset_top = -0.312042
+offset_right = -0.240234
+offset_bottom = 0.231964
+text = "发牌"
 
+[node name="排序按钮" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.905
+anchor_top = 0.708
+anchor_right = 0.995
+anchor_bottom = 0.756
+offset_left = -0.560059
+offset_top = 0.216003
+offset_right = -0.240234
+offset_bottom = 0.111969
+text = "排序"
+
+[node name="当前选择" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.678
+anchor_top = 0.063
+anchor_right = 0.713
+anchor_bottom = 0.099
+offset_left = -0.0560303
+offset_top = 0.175999
+offset_right = -0.376099
+offset_bottom = -0.152008
+
+[node name="发牌计时器" type="Timer" parent="."]
+wait_time = 0.2
+
+[node name="上家牌数显示" parent="." instance=ExtResource("3_dwm8v")]
+layout_mode = 1
+anchor_left = 0.07
+anchor_top = 0.128
+anchor_right = 0.07
+anchor_bottom = 0.128
+offset_left = -29.64
+offset_top = -41.944
+offset_right = 29.36
+offset_bottom = 42.296
+
+[node name="下家牌数显示" parent="." instance=ExtResource("3_dwm8v")]
+layout_mode = 1
+anchor_left = 0.94
+anchor_top = 0.128
+anchor_right = 0.94
+anchor_bottom = 0.128
+offset_left = -29.8801
+offset_top = -41.944
+offset_right = 29.1199
+offset_bottom = 42.296
+
+[connection signal="item_rect_changed" from="." to="." method="_on_item_rect_changed"]
 [connection signal="button_down" from="发牌按钮" to="." method="_on_发牌按钮_button_down"]
+[connection signal="button_down" from="排序按钮" to="." method="_on_排序按钮_button_down"]
+[connection signal="timeout" from="发牌计时器" to="." method="_on_发牌计时器_timeout"]
