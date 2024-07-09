@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="斗地主"
+run/main_scene="res://场景/手牌管理器.tscn"
 config/features=PackedStringArray("4.2", "Mobile")
 config/icon="res://icon.svg"
 

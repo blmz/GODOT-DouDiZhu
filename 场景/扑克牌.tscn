@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://tautr4ao3iu8"]
+[gd_scene load_steps=7 format=3 uid="uid://tautr4ao3iu8"]
 
 [ext_resource type="Texture2D" uid="uid://br58iaol21te" path="res://扑克牌图片/大王.jpg" id="1_glnhf"]
 [ext_resource type="Script" path="res://脚本/扑克牌.gd" id="1_pdswt"]
 [ext_resource type="Texture2D" uid="uid://dct4pt82mxnaa" path="res://UI图片/扑克牌背.png" id="2_tk1yo"]
 [ext_resource type="Texture2D" uid="uid://byx86wlve6ihy" path="res://UI图片/蓝色边框.png" id="4_ymp43"]
+[ext_resource type="Texture2D" uid="uid://cw14bio70n1u0" path="res://UI图片/对勾图标.png" id="5_o3yf8"]
 
 [sub_resource type="Curve" id="Curve_xfad0"]
 _data = [Vector2(0, 1), -2.03297, -0.203297, 0, 0, Vector2(1, 0), -2.42645, 0.0, 0, 0]
@@ -41,5 +42,15 @@ offset_bottom = 150.0
 texture = ExtResource("4_ymp43")
 expand_mode = 1
 
+[node name="选择图标" type="TextureRect" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0.752941)
+layout_mode = 0
+offset_right = 105.0
+offset_bottom = 150.0
+texture = ExtResource("5_o3yf8")
+expand_mode = 1
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="mouse_entered" from="." to="." method="鼠标进了"]
 [connection signal="mouse_exited" from="." to="." method="鼠标出了"]

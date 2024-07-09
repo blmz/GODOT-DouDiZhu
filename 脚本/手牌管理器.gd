@@ -6,6 +6,7 @@ extends Control
 @onready var 发牌按钮=$"发牌按钮"
 @onready var 手牌线点 = $"手牌排列线/手牌线/手牌线点"
 @onready var 当前选择 = $"当前选择"
+@onready var 玩家选择列表UI = $"玩家选择列表"
 
 #曲线
 @export var 选择上升曲线:Curve
@@ -36,6 +37,7 @@ var 上家手牌列表:Array[Node]#上家牌UI列表
 var 上家牌列表:Array[扑克牌类]#上家牌列表
 var 下家手牌列表:Array[Node]#下家牌UI列表
 var 下家牌列表:Array[扑克牌类]#下家牌列表
+var 玩家选择列表:Array[Node]#玩家选择的牌列表
 
 #发牌相关
 var 是否发牌:=false
@@ -174,9 +176,14 @@ func 发底牌(对象=""):
 			"上家":对家发牌(上家点,牌)
 			"下家":对家发牌(下家点,牌)
 	牌堆牌数显示.visible=false
+	排序手牌()
 
-func _ready():
-	初始化牌堆()
+func 打出牌():
+	if(玩家选择列表.size()==0):
+		return 0
+	for 牌 in 玩家选择列表:
+		玩家手牌列表.erase(牌)
+		牌.queue_free()
 
 func 鼠标进入手牌(对象:Panel):
 	当前选择牌=对象
@@ -188,6 +195,31 @@ func 鼠标离开手牌(对象:Panel):
 	当前选择牌=null
 	重置位置(计算位置(玩家手牌列表.size()))
 	#print("离开了",对象.牌.花色,对象.牌.点数)
+
+func 点击牌(event):
+	#如果鼠标按下时有选中的牌，则调用选中函数
+	if(event is InputEventMouseButton):
+		if(event.button_index==MOUSE_BUTTON_LEFT and event.pressed):
+			if(当前选择牌!=null):
+				当前选择牌.选中()
+				if(当前选择牌.是否被选中):
+					玩家选择列表.append(当前选择牌)
+				else:
+					玩家选择列表.erase(当前选择牌)
+				var 牌列表:Array[String]
+				for 牌 in 玩家选择列表:
+					牌列表.append(牌.牌.花色+牌.牌.点数)
+				玩家选择列表UI.text="玩家选择的牌:"+str(牌列表)
+
+func _process(delta:float):
+	pass
+
+func _input(event:InputEvent):
+	点击牌(event)
+	
+
+func _ready():
+	初始化牌堆()
 
 func _on_发牌按钮_button_down():
 	开始发牌()
@@ -208,3 +240,7 @@ func _on_发牌计时器_timeout():
 #位置改变时重置手牌位置
 func _on_item_rect_changed():
 	重置位置(计算位置(玩家手牌列表.size()))
+
+
+func _on_重发_button_up():
+	pass

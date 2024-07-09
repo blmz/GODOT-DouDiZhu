@@ -8,6 +8,7 @@ signal 鼠标离开(对象:Panel)
 @onready var 图片 = $"图片"
 @onready var 牌背 = $"牌背"
 @onready var 选择发光框 = $"选择发光框"
+@onready var 选择图标=$"选择图标"
 
 @export_range(0,500) var 旋转速度:float=100
 @export_range(0,1000) var 运动速度:=500.0
@@ -17,6 +18,7 @@ var 牌:扑克牌类
 
 var 是否旋转:=false
 var 是否运动:=false
+var 是否被选中:=false
 
 var 运动方向:Vector2
 var 目标位置:Vector2
@@ -89,12 +91,20 @@ func 旋转(delta):
 				是否旋转=false
 
 func 鼠标进了():
-	#选择发光框.visible=true
+	选择发光框.visible=true
 	鼠标进入.emit(self)
 
 func 鼠标出了():
 	鼠标离开.emit(self)
-	#选择发光框.visible=false
+	选择发光框.visible=false
+
+func 选中():
+	if 是否被选中:
+		选择图标.visible=false
+		是否被选中=false
+	else:
+		选择图标.visible=true
+		是否被选中=true
 
 func _process(delta):
 	移动(delta)
