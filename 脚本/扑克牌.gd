@@ -9,19 +9,22 @@ signal 鼠标离开(对象:Panel)
 @onready var 牌背 = $"牌背"
 @onready var 选择发光框 = $"选择发光框"
 
-var 是否运动:=false
-@export_range(0,1000) var 运动速度:=500.0
-var 运动方向:Vector2
-var 目标位置:Vector2
-var 目标距离:float
-
-var 是否旋转:=false
 @export_range(0,500) var 旋转速度:float=100
-var 角度差值:float
-var 目标角度:float
+@export_range(0,1000) var 运动速度:=500.0
 
 var 文件地址="res://扑克牌图片/"
 var 牌:扑克牌类
+
+var 是否旋转:=false
+var 是否运动:=false
+
+var 运动方向:Vector2
+var 目标位置:Vector2
+var 目标距离:float
+var 角度差值:float
+var 目标角度:float
+var 旋转最小值:=3
+var 移动最小值:=1
 
 func 更新牌(牌参数:扑克牌类):
 	if(牌参数!=null):
@@ -37,6 +40,8 @@ func 翻面():
 func 移动到(位置:Vector2):
 	目标位置=位置
 	目标距离 = position.distance_to(位置)
+	if(目标距离<=移动最小值):
+		return 0
 	运动方向 = (位置-position).normalized()
 	是否运动=true
 
@@ -60,6 +65,8 @@ func 旋转到(角度:float=0):
 	else:
 		目标角度=角度
 	角度差值=目标角度-rotation_degrees
+	if(abs(角度差值)<=旋转最小值):
+		return 0
 	if(角度差值!=0):
 		是否旋转=true
 
@@ -71,23 +78,23 @@ func 旋转(delta):
 			#print(旋转进度)
 			var 旋转差值=运动曲线.sample(旋转进度)
 			rotation_degrees+=旋转速度*旋转差值*delta
-			if(旋转进度>=0.999):
+			if(旋转进度>=1):
 				是否旋转=false
 		elif(角度差值<0):
 			var 旋转进度=1-(目标角度-rotation_degrees)/角度差值
 			#print(旋转进度)
 			var 旋转差值=运动曲线.sample(旋转进度)
 			rotation_degrees-=旋转速度*旋转差值*delta
-			if(旋转进度>=0.999):
+			if(旋转进度>=1):
 				是否旋转=false
 
 func 鼠标进了():
+	#选择发光框.visible=true
 	鼠标进入.emit(self)
-	选择发光框.visible=true
 
 func 鼠标出了():
 	鼠标离开.emit(self)
-	选择发光框.visible=false
+	#选择发光框.visible=false
 
 func _process(delta):
 	移动(delta)

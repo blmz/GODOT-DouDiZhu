@@ -19,12 +19,6 @@ pivot_offset = Vector2(52.5, 75)
 script = ExtResource("1_pdswt")
 "运动曲线" = SubResource("Curve_xfad0")
 
-[node name="图片" type="TextureRect" parent="."]
-layout_mode = 0
-offset_right = 105.0
-offset_bottom = 150.0
-texture = ExtResource("1_glnhf")
-
 [node name="牌背" type="TextureRect" parent="."]
 visible = false
 layout_mode = 0
@@ -32,6 +26,12 @@ offset_right = 105.0
 offset_bottom = 150.0
 texture = ExtResource("2_tk1yo")
 expand_mode = 1
+
+[node name="图片" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 105.0
+offset_bottom = 150.0
+texture = ExtResource("1_glnhf")
 
 [node name="选择发光框" type="TextureRect" parent="."]
 visible = false

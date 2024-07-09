@@ -147,9 +147,15 @@ func 初始化牌堆():
 	初始牌堆.shuffle()#打乱牌堆
 	#print(初始牌堆,"牌堆大小为",初始牌堆.size())
 
-#给所有玩家发牌
+func 开始发牌():
+	牌堆牌数显示.visible=true
+	是否发牌=true
+	发牌计时器.start()
+
+#给所有玩家发牌并且留三张
 func 发牌():
 	if(初始牌堆.size()==3):
+		是否发牌=false
 		return 0
 	var 位置数=发牌数%3
 	match 位置数:
@@ -161,36 +167,44 @@ func 发牌():
 	下家牌数显示.更新牌数(下家牌列表.size())
 	上家牌数显示.更新牌数(上家牌列表.size())
 
+func 发底牌(对象=""):
+	for 牌 in 初始牌堆:
+		match 对象:
+			"玩家":玩家发牌(牌)
+			"上家":对家发牌(上家点,牌)
+			"下家":对家发牌(下家点,牌)
+	牌堆牌数显示.visible=false
 
 func _ready():
 	初始化牌堆()
 
 func 鼠标进入手牌(对象:Panel):
 	当前选择牌=对象
-	对象.z_index=99
 	重置位置(选牌位置计算(对象))
+	#对象.z_index=99
+	#print("进入了",对象.牌.花色,对象.牌.点数)
 
 func 鼠标离开手牌(对象:Panel):
 	当前选择牌=null
-	对象.top_level=false
 	重置位置(计算位置(玩家手牌列表.size()))
+	#print("离开了",对象.牌.花色,对象.牌.点数)
 
 func _on_发牌按钮_button_down():
-	是否发牌=true
-	发牌计时器.start()
+	开始发牌()
 
 func _on_排序按钮_button_down():
 	排序手牌()
-	手牌显示排序()
-
+	#手牌显示排序()
 
 func _on_发牌计时器_timeout():
 	if(!是否发牌):
 		发牌计时器.stop()
 		是否发牌=false
+		排序手牌()
+		发底牌("玩家")
 	else:
 		发牌()
 
+#位置改变时重置手牌位置
 func _on_item_rect_changed():
 	重置位置(计算位置(玩家手牌列表.size()))
-	pass # Replace with function body.

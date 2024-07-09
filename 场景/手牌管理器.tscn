@@ -10,7 +10,7 @@ point_count = 2
 
 [sub_resource type="Curve2D" id="Curve2D_c4sjh"]
 _data = {
-"points": PackedVector2Array(-49.024, 107.139, 49.024, -107.139, -348, 137.512, -140.817, -1, 140.817, 1, 0, -1.69763, -73.9888, -128.849, 73.9888, 128.849, 345, 130.721)
+"points": PackedVector2Array(-49.024, 107.139, 49.024, -107.139, -332, 76.3953, -140.817, -1, 140.817, 1, 4, -83.1861, -73.9888, -128.849, 0, 0, 343, 91.6744)
 }
 point_count = 3
 
@@ -28,6 +28,7 @@ script = ExtResource("1_tnola")
 "扑克牌" = ExtResource("2_io782")
 
 [node name="牌堆牌数显示" parent="." instance=ExtResource("3_dwm8v")]
+visible = false
 layout_mode = 1
 anchor_left = 0.505
 anchor_top = 0.356
@@ -73,25 +74,25 @@ offset_bottom = -0.159988
 
 [node name="手牌点" type="Control" parent="."]
 layout_mode = 1
-anchor_left = 0.501
-anchor_top = 1.642
-anchor_right = 0.501
-anchor_bottom = 1.642
-offset_left = -0.151978
-offset_top = -0.0159912
-offset_right = -0.152039
-offset_bottom = -0.0159912
+anchor_left = 0.419
+anchor_top = 3.199
+anchor_right = 0.419
+anchor_bottom = 3.199
+offset_left = 0.311951
+offset_top = -1278.95
+offset_right = 0.311951
+offset_bottom = -1278.95
 
 [node name="手牌排列线" type="Control" parent="."]
 layout_mode = 1
-anchor_left = 0.501
-anchor_top = 0.745
-anchor_right = 0.501
-anchor_bottom = 0.745
-offset_left = -0.152039
-offset_top = 0.23996
-offset_right = -0.152039
-offset_bottom = 0.23996
+anchor_left = 0.419
+anchor_top = 0.756
+anchor_right = 0.419
+anchor_bottom = 0.756
+offset_left = 0.311951
+offset_top = 0.111969
+offset_right = 0.311951
+offset_bottom = 0.111969
 
 [node name="手牌线" type="Path2D" parent="手牌排列线"]
 position = Vector2(0, -54)
@@ -99,7 +100,7 @@ scale = Vector2(1, 0.589041)
 curve = SubResource("Curve2D_c4sjh")
 
 [node name="手牌线点" type="PathFollow2D" parent="手牌排列线/手牌线"]
-position = Vector2(-348, 137.512)
+position = Vector2(-332, 76.3953)
 rotation = -0.454002
 rotates = false
 loop = false
@@ -143,7 +144,7 @@ offset_right = -0.376099
 offset_bottom = -0.152008
 
 [node name="发牌计时器" type="Timer" parent="."]
-wait_time = 0.2
+wait_time = 0.1
 
 [node name="上家牌数显示" parent="." instance=ExtResource("3_dwm8v")]
 layout_mode = 1
