@@ -183,7 +183,6 @@ offset_bottom = -0.216003
 autowrap_mode = 1
 
 [node name="发牌计时器" type="Timer" parent="."]
-wait_time = 0.1
 
 [node name="上家牌数显示" parent="." instance=ExtResource("3_dwm8v")]
 layout_mode = 1
@@ -210,5 +209,6 @@ offset_bottom = 42.296
 [connection signal="item_rect_changed" from="." to="." method="_on_item_rect_changed"]
 [connection signal="button_down" from="发牌按钮" to="." method="_on_发牌按钮_button_down"]
 [connection signal="button_down" from="排序按钮" to="." method="_on_排序按钮_button_down"]
-[connection signal="button_up" from="重发" to="." method="_on_重发_button_up"]
+[connection signal="button_down" from="重发" to="." method="_on_重发_button_down"]
+[connection signal="button_down" from="打出" to="." method="打出牌"]
 [connection signal="timeout" from="发牌计时器" to="." method="_on_发牌计时器_timeout"]

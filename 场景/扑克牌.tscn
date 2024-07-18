@@ -34,14 +34,6 @@ offset_right = 105.0
 offset_bottom = 150.0
 texture = ExtResource("1_glnhf")
 
-[node name="选择发光框" type="TextureRect" parent="."]
-visible = false
-layout_mode = 0
-offset_right = 105.0
-offset_bottom = 150.0
-texture = ExtResource("4_ymp43")
-expand_mode = 1
-
 [node name="选择图标" type="TextureRect" parent="."]
 visible = false
 modulate = Color(1, 1, 1, 0.752941)
@@ -49,6 +41,14 @@ layout_mode = 0
 offset_right = 105.0
 offset_bottom = 150.0
 texture = ExtResource("5_o3yf8")
+expand_mode = 1
+
+[node name="选择发光框" type="TextureRect" parent="."]
+visible = false
+layout_mode = 0
+offset_right = 105.0
+offset_bottom = 150.0
+texture = ExtResource("4_ymp43")
 expand_mode = 1
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
