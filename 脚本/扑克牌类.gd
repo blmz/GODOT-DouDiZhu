@@ -16,6 +16,7 @@ static func 判断牌型(选择牌列表:Array[扑克牌类]=[])->int:
 	var 选择点数:Array[int]=[]
 	for 牌 in 选择牌列表:#获取选择牌的点数并转化为数字方便对比
 		选择点数.append(点数列表.find(牌.点数))
+	选择点数.sort()#排序
 	var 牌数:int=选择牌列表.size()
 	var 点数字典=统计(选择点数)
 	print(点数字典)
@@ -29,14 +30,23 @@ static func 判断牌型(选择牌列表:Array[扑克牌类]=[])->int:
 	if (牌数==3 and 选择牌列表[0].点数==选择牌列表[1].点数 and 选择牌列表[1].点数==选择牌列表[2].点数):
 		return 3
 	#判断三带一
-	if (牌数==4 and 选择牌列表[0].点数==选择牌列表[2].点数 and 选择牌列表[0].点数==选择牌列表[3].点数):
+	if (牌数==4 and 3 in 点数字典.values() and 1 in 点数字典.values()):
 		return 4
 	#判断三带二
-	if (牌数==5 and 选择牌列表[0].点数==选择牌列表[2].点数 and 选择牌列表[0].点数==选择牌列表[3].点数 and 选择牌列表[0].点数==选择牌列表[4].点数):
+	if (牌数==4 and 3 in 点数字典.values() and 2 in 点数字典.values()):
 		return 5
 	#判断顺子
-	if (牌数>4 and 选择牌列表[0].点数==选择牌列表[3].点数 and 选择牌列表[1].点数==选择牌列表[4].点数):
-		return 6
+	if (牌数>4 ):
+		var 是否是顺子:bool=false
+		for i in range(选择点数.size()-1):#通过选择点数的顺序来判断是否是顺子
+			if (选择点数[i+1]-选择点数[i]==1):
+				是否是顺子=true
+			else:
+				是否是顺子=false
+				break
+		if 是否是顺子:
+			return 6
+	
 	return 0
 
 static func 排序扑克列表(选择牌列表:Array[扑克牌类]=[])->Array[扑克牌类]:
