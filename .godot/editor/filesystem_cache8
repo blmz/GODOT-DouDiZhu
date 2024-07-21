@@ -1,5 +1,5 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1721493825
+::res://::1721531363
 icon.svg::CompressedTexture2D::6297352337469955287::1721492615::1721492615::1::::<><>::
 README.md::TextFile::-1::1721492615::0::1::::<><>::
 ::res://UI图片/::1721493796
@@ -7,10 +7,10 @@ README.md::TextFile::-1::1721492615::0::1::::<><>::
 对勾图标.png::CompressedTexture2D::6372432770914547745::1721493796::1721493796::1::::<><>::
 扑克牌背.png::CompressedTexture2D::7340651545547214540::1721492615::1721492615::1::::<><>::
 蓝色边框.png::CompressedTexture2D::4120493813188867134::1721492615::1721492615::1::::<><>::
-::res://场景/::1721493796
-手牌管理器.tscn::PackedScene::9222213524064059862::1721493796::0::1::::<><>::res://脚本/手牌管理器.gd<>uid://tautr4ao3iu8::::res://场景/扑克牌.tscn<>uid://c0cg58jpcboa4::::res://场景/牌数显示.tscn
-扑克牌.tscn::PackedScene::1334837236778237289::1721493796::0::1::::<><>::uid://br58iaol21te::::res://扑克牌图片/大王.jpg<>res://脚本/扑克牌.gd<>uid://dct4pt82mxnaa::::res://UI图片/扑克牌背.png<>uid://byx86wlve6ihy::::res://UI图片/蓝色边框.png<>uid://cw14bio70n1u0::::res://UI图片/对勾图标.png
-牌数显示.tscn::PackedScene::6532110837476930973::1721492615::0::1::::<><>::uid://dct4pt82mxnaa::::res://UI图片/扑克牌背.png<>res://脚本/牌数显示.gd
+::res://场景/::1721494051
+手牌管理器.tscn::PackedScene::9222213524064059862::1721494051::0::1::::<><>::res://脚本/手牌管理器.gd<>uid://tautr4ao3iu8::::res://场景/扑克牌.tscn<>uid://c0cg58jpcboa4::::res://场景/牌数显示.tscn
+扑克牌.tscn::PackedScene::1334837236778237289::1721494051::0::1::::<><>::uid://br58iaol21te::::res://扑克牌图片/大王.jpg<>res://脚本/扑克牌.gd<>uid://dct4pt82mxnaa::::res://UI图片/扑克牌背.png<>uid://byx86wlve6ihy::::res://UI图片/蓝色边框.png<>uid://cw14bio70n1u0::::res://UI图片/对勾图标.png
+牌数显示.tscn::PackedScene::6532110837476930973::1721494051::0::1::::<><>::uid://dct4pt82mxnaa::::res://UI图片/扑克牌背.png<>res://脚本/牌数显示.gd
 ::res://扑克牌图片/::1721492615
 大王.jpg::CompressedTexture2D::107164127277592762::1721492615::1721492615::1::::<><>::
 小王.jpg::CompressedTexture2D::2027714568727832186::1721492615::1721492615::1::::<><>::

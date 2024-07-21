@@ -94,6 +94,7 @@ func 旋转(delta):
 func 鼠标进了():
 	选择发光框.visible=true
 	鼠标进入.emit(self)
+	print("鼠标进了"+牌.花色+牌.点数)
 
 func 鼠标出了():
 	鼠标离开.emit(self)

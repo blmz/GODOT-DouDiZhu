@@ -46,7 +46,26 @@ static func 判断牌型(选择牌列表:Array[扑克牌类]=[])->int:
 				break
 		if 是否是顺子:
 			return 6
-	
+	#判断炸弹
+	if (牌数==4 and 4 in 点数字典.values()):
+		return 9
+	#判断连对
+	if (牌数>=6 and 牌数%2==0):
+		var 是否是连对:bool=false
+		var 当前点数:int=0
+		var 键列表=点数字典.keys()
+		键列表.sort()
+		for key in 键列表:#通过选择点数的顺序来判断是否是连对
+			if(当前点数==0):
+				当前点数=key-1
+			if (key-当前点数==1 and 点数字典[key]==2):
+				是否是连对=true
+				当前点数=key
+			else:
+				是否是连对=false
+				break
+		if 是否是连对:
+			return 7
 	return 0
 
 static func 排序扑克列表(选择牌列表:Array[扑克牌类]=[])->Array[扑克牌类]:

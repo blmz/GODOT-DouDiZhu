@@ -1,4 +1,9 @@
+CollisionShape2D
+Area2D
+VisibleOnScreenEnabler2D
+TouchScreenButton
 Button
+Sprite2D
 Control
 Label
 TextureRect
@@ -7,6 +12,3 @@ LineEdit
 CanvasLayer
 PathFollow2D
 Path2D
-Marker2D
-HBoxContainer
-Panel
