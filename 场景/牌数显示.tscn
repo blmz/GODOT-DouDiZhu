@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://c0cg58jpcboa4"]
 
 [ext_resource type="Texture2D" uid="uid://dct4pt82mxnaa" path="res://UI图片/扑克牌背.png" id="1_k4t3j"]
-[ext_resource type="Script" path="res://脚本/牌数显示.gd" id="2_1dicf"]
+[ext_resource type="Script" uid="uid://dpgu6u68uunsw" path="res://脚本/牌数显示.gd" id="2_1dicf"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_maokf"]
 font_size = 25

@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://d4nkrk234va2i"]
 
-[ext_resource type="Script" path="res://脚本/手牌管理器.gd" id="1_tnola"]
+[ext_resource type="Script" uid="uid://2lb2bwrcj4du" path="res://脚本/手牌管理器.gd" id="1_tnola"]
 [ext_resource type="PackedScene" uid="uid://tautr4ao3iu8" path="res://场景/扑克牌.tscn" id="2_io782"]
 [ext_resource type="PackedScene" uid="uid://c0cg58jpcboa4" path="res://场景/牌数显示.tscn" id="3_dwm8v"]
 
@@ -10,9 +10,9 @@ point_count = 2
 
 [sub_resource type="Curve2D" id="Curve2D_c4sjh"]
 _data = {
-"points": PackedVector2Array(-49.024, 107.139, 49.024, -107.139, -332, 76.3953, -140.817, -1, 140.817, 1, 4, -83.1861, -73.9888, -128.849, 0, 0, 343, 91.6744)
+"points": PackedVector2Array(-67.8069, -1.27748, 67.8069, 1.27748, -458, 191.837, -101.787, -6.40215, 140.817, 1, 498, 195.233)
 }
-point_count = 3
+point_count = 2
 
 [node name="手牌管理器" type="Control"]
 layout_mode = 3
@@ -78,10 +78,10 @@ anchor_left = 0.419
 anchor_top = 3.199
 anchor_right = 0.419
 anchor_bottom = 3.199
-offset_left = 0.311951
-offset_top = -1278.95
-offset_right = 0.311951
-offset_bottom = -1278.95
+offset_left = 46.312
+offset_top = -533.952
+offset_right = 46.312
+offset_bottom = -533.952
 
 [node name="手牌排列线" type="Control" parent="."]
 layout_mode = 1
@@ -89,18 +89,18 @@ anchor_left = 0.419
 anchor_top = 0.756
 anchor_right = 0.419
 anchor_bottom = 0.756
-offset_left = 0.311951
-offset_top = 0.111969
-offset_right = 0.311951
-offset_bottom = 0.111969
+offset_left = 15.312
+offset_top = -72.888
+offset_right = 15.312
+offset_bottom = -72.888
 
 [node name="手牌线" type="Path2D" parent="手牌排列线"]
-position = Vector2(0, -54)
+position = Vector2(0, -210)
 scale = Vector2(1, 0.589041)
 curve = SubResource("Curve2D_c4sjh")
 
 [node name="手牌线点" type="PathFollow2D" parent="手牌排列线/手牌线"]
-position = Vector2(-332, 76.3953)
+position = Vector2(-458, 191.837)
 rotation = -0.454002
 rotates = false
 loop = false
@@ -109,52 +109,52 @@ loop = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.905
-anchor_top = 0.644
-anchor_right = 0.995
-anchor_bottom = 0.691
-offset_left = -0.560059
-offset_top = -0.312042
-offset_right = -0.240234
-offset_bottom = 0.231964
+anchor_top = 0.241
+anchor_right = 0.992
+anchor_bottom = 0.289
+offset_left = -3.55994
+offset_top = -0.168015
+offset_right = 0.21582
+offset_bottom = -0.271973
 text = "发牌"
 
 [node name="排序按钮" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.905
-anchor_top = 0.708
-anchor_right = 0.995
-anchor_bottom = 0.756
-offset_left = -0.560059
-offset_top = 0.216003
-offset_right = -0.240234
-offset_bottom = 0.111969
+anchor_left = 0.902
+anchor_top = 0.306
+anchor_right = 0.992
+anchor_bottom = 0.353
+offset_left = -0.104126
+offset_top = -0.287949
+offset_right = 0.21582
+offset_bottom = 0.256058
 text = "排序"
 
 [node name="重发" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.905
-anchor_top = 0.776
-anchor_right = 0.995
-anchor_bottom = 0.824
-offset_left = -0.559937
-offset_top = 0.151978
-offset_right = -0.240112
-offset_bottom = 0.0479736
+anchor_left = 0.902
+anchor_top = 0.373
+anchor_right = 0.992
+anchor_bottom = 0.421
+offset_left = -0.104004
+offset_top = 0.296051
+offset_right = 0.215942
+offset_bottom = 0.192047
 text = "重发"
 
 [node name="打出" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.905
-anchor_top = 0.838
+anchor_left = 0.902
+anchor_top = 0.435
 anchor_right = 0.995
-anchor_bottom = 0.886
-offset_left = -0.559937
-offset_top = -0.0240479
-offset_right = -0.240112
-offset_bottom = -0.128052
+anchor_bottom = 0.483
+offset_left = -0.104004
+offset_top = 0.119965
+offset_right = -3.23999
+offset_bottom = 0.0159912
 text = "打出"
 
 [node name="当前选择" type="Label" parent="."]
