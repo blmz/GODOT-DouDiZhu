@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://br58iaol21te" path="res://扑克牌图片/大王.jpg" id="1_glnhf"]
 [ext_resource type="Script" uid="uid://bvfg1ffv8j81k" path="res://脚本/扑克牌.gd" id="1_pdswt"]
-[ext_resource type="Texture2D" uid="uid://dct4pt82mxnaa" path="res://UI图片/扑克牌背.png" id="2_tk1yo"]
+[ext_resource type="Texture2D" uid="uid://wyjxd7e23sjy" path="res://UI图片/牌背.png" id="2_7qel1"]
 [ext_resource type="Texture2D" uid="uid://byx86wlve6ihy" path="res://UI图片/蓝色边框.png" id="4_ymp43"]
 [ext_resource type="Texture2D" uid="uid://cw14bio70n1u0" path="res://UI图片/对勾图标.png" id="5_o3yf8"]
 
@@ -12,21 +12,26 @@ point_count = 2
 
 [node name="扑克牌" type="Panel"]
 self_modulate = Color(1, 1, 1, 0)
-offset_left = -52.0
-offset_top = -75.0
-offset_right = 53.0
-offset_bottom = 75.0
+anchors_preset = -1
+anchor_left = -0.045
+anchor_top = -0.116
+anchor_right = 0.046
+anchor_bottom = 0.116
+offset_left = -0.159996
+offset_top = 0.167999
+offset_right = 0.00799561
+offset_bottom = -0.167999
 pivot_offset = Vector2(52.5, 75)
 script = ExtResource("1_pdswt")
 "运动曲线" = SubResource("Curve_xfad0")
 
 [node name="牌背" type="TextureRect" parent="."]
-visible = false
 layout_mode = 0
 offset_right = 105.0
 offset_bottom = 150.0
+pivot_offset = Vector2(53, 75)
 mouse_filter = 2
-texture = ExtResource("2_tk1yo")
+texture = ExtResource("2_7qel1")
 expand_mode = 1
 
 [node name="图片" type="TextureRect" parent="."]

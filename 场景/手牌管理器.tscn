@@ -1,8 +1,15 @@
-[gd_scene load_steps=6 format=3 uid="uid://d4nkrk234va2i"]
+[gd_scene load_steps=13 format=3 uid="uid://d4nkrk234va2i"]
 
 [ext_resource type="Script" uid="uid://2lb2bwrcj4du" path="res://脚本/手牌管理器.gd" id="1_tnola"]
 [ext_resource type="PackedScene" uid="uid://tautr4ao3iu8" path="res://场景/扑克牌.tscn" id="2_io782"]
 [ext_resource type="PackedScene" uid="uid://c0cg58jpcboa4" path="res://场景/牌数显示.tscn" id="3_dwm8v"]
+[ext_resource type="Texture2D" uid="uid://b5tf3lyclity2" path="res://UI图片/欢乐斗地主背景_PhotoGrid.png" id="3_fdjet"]
+[ext_resource type="FontFile" uid="uid://bsft4jeg18jpk" path="res://字体/尔雅新大黑_爱给网_aigei_com.ttf" id="5_rgkx0"]
+[ext_resource type="Texture2D" uid="uid://b3qu630fxysr0" path="res://UI图片/斗地主按钮.png" id="6_fdjet"]
+[ext_resource type="AudioStream" uid="uid://dxao7d4d3sa7m" path="res://音频/bgm1.mp3" id="6_t0sj7"]
+[ext_resource type="AudioStream" uid="uid://x7y6ls5rvgvs" path="res://音频/bgm2.mp3" id="7_fdjet"]
+[ext_resource type="PackedScene" uid="uid://debalulncpwo5" path="res://场景/时钟倒计时.tscn" id="8_d6qxc"]
+[ext_resource type="PackedScene" uid="uid://cr0la6sfh50us" path="res://场景/结算界面.tscn" id="9_f8sub"]
 
 [sub_resource type="Curve" id="Curve_dg5hf"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -10,7 +17,7 @@ point_count = 2
 
 [sub_resource type="Curve2D" id="Curve2D_c4sjh"]
 _data = {
-"points": PackedVector2Array(-67.8069, -1.27748, 67.8069, 1.27748, -458, 191.837, -101.787, -6.40215, 140.817, 1, 498, 195.233)
+"points": PackedVector2Array(-67.8069, -1.27748, 0, 0, -350, 0, 0, 0, 109.225, 6.40215, 350, 1.698)
 }
 point_count = 2
 
@@ -27,17 +34,27 @@ script = ExtResource("1_tnola")
 "选择分散距离" = 50.0
 "扑克牌" = ExtResource("2_io782")
 
+[node name="背景" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_fdjet")
+expand_mode = 1
+metadata/_edit_lock_ = true
+
 [node name="牌堆牌数显示" parent="." instance=ExtResource("3_dwm8v")]
-visible = false
 layout_mode = 1
 anchor_left = 0.505
 anchor_top = 0.356
 anchor_right = 0.505
 anchor_bottom = 0.356
 offset_left = -52.76
-offset_top = -74.688
+offset_top = 38.312
 offset_right = 52.24
-offset_bottom = 75.312
+offset_bottom = 188.312
 
 [node name="中心点" type="Control" parent="."]
 layout_mode = 1
@@ -46,9 +63,9 @@ anchor_top = 0.241
 anchor_right = 0.459
 anchor_bottom = 0.241
 offset_left = 0.231995
-offset_top = -0.168015
+offset_top = 112.832
 offset_right = 0.231995
-offset_bottom = -0.168015
+offset_bottom = 112.832
 
 [node name="上家点" type="Control" parent="."]
 layout_mode = 1
@@ -56,10 +73,10 @@ anchor_left = -0.135
 anchor_top = -0.205
 anchor_right = -0.135
 anchor_bottom = -0.205
-offset_left = -0.479996
-offset_top = -0.159988
-offset_right = -0.479996
-offset_bottom = -0.159988
+offset_left = -15.48
+offset_top = 361.84
+offset_right = -15.48
+offset_bottom = 361.84
 
 [node name="下家点" type="Control" parent="."]
 layout_mode = 1
@@ -67,97 +84,55 @@ anchor_left = 1.128
 anchor_top = -0.205
 anchor_right = 1.128
 anchor_bottom = -0.205
-offset_left = -0.456055
-offset_top = -0.159988
-offset_right = -0.456055
-offset_bottom = -0.159988
-
-[node name="手牌点" type="Control" parent="."]
-layout_mode = 1
-anchor_left = 0.419
-anchor_top = 3.199
-anchor_right = 0.419
-anchor_bottom = 3.199
-offset_left = 46.312
-offset_top = -533.952
-offset_right = 46.312
-offset_bottom = -533.952
+offset_left = -32.4561
+offset_top = 312.84
+offset_right = -32.4561
+offset_bottom = 312.84
 
 [node name="手牌排列线" type="Control" parent="."]
 layout_mode = 1
-anchor_left = 0.419
-anchor_top = 0.756
-anchor_right = 0.419
-anchor_bottom = 0.756
-offset_left = 15.312
-offset_top = -72.888
-offset_right = 15.312
-offset_bottom = -72.888
+anchor_top = 0.719
+anchor_right = 0.716
+anchor_bottom = 0.972
+offset_left = 770.0
+offset_top = -13.912
+offset_right = -54.832
+offset_bottom = -177.856
 
 [node name="手牌线" type="Path2D" parent="手牌排列线"]
-position = Vector2(0, -210)
+position = Vector2(-147, 49)
 scale = Vector2(1, 0.589041)
 curve = SubResource("Curve2D_c4sjh")
 
 [node name="手牌线点" type="PathFollow2D" parent="手牌排列线/手牌线"]
-position = Vector2(-458, 191.837)
+position = Vector2(-350, 0)
 rotation = -0.454002
 rotates = false
 loop = false
 
-[node name="发牌按钮" type="Button" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.905
-anchor_top = 0.241
-anchor_right = 0.992
-anchor_bottom = 0.289
-offset_left = -3.55994
-offset_top = -0.168015
-offset_right = 0.21582
-offset_bottom = -0.271973
-text = "发牌"
+[node name="Panel" type="Panel" parent="手牌排列线"]
+visible = false
+layout_mode = 0
+offset_left = -498.0
+offset_top = 38.0
+offset_right = 327.0
+offset_bottom = 213.0
 
-[node name="排序按钮" type="Button" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.902
-anchor_top = 0.306
-anchor_right = 0.992
-anchor_bottom = 0.353
-offset_left = -0.104126
-offset_top = -0.287949
-offset_right = 0.21582
-offset_bottom = 0.256058
-text = "排序"
-
-[node name="重发" type="Button" parent="."]
+[node name="重发" type="Button" parent="." groups=["测试"]]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.902
 anchor_top = 0.373
 anchor_right = 0.992
 anchor_bottom = 0.421
-offset_left = -0.104004
-offset_top = 0.296051
-offset_right = 0.215942
-offset_bottom = 0.192047
+offset_left = -699.104
+offset_top = 204.296
+offset_right = -698.784
+offset_bottom = 204.192
 text = "重发"
 
-[node name="打出" type="Button" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.902
-anchor_top = 0.435
-anchor_right = 0.995
-anchor_bottom = 0.483
-offset_left = -0.104004
-offset_top = 0.119965
-offset_right = -3.23999
-offset_bottom = 0.0159912
-text = "打出"
-
-[node name="当前选择" type="Label" parent="."]
+[node name="当前选择" type="Label" parent="." groups=["测试"]]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.934
@@ -169,7 +144,8 @@ offset_top = 0.175995
 offset_right = -0.288086
 offset_bottom = 1.14401
 
-[node name="玩家选择列表" type="Label" parent="."]
+[node name="玩家选择列表" type="Label" parent="." groups=["测试"]]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.18
@@ -190,10 +166,10 @@ anchor_left = 0.07
 anchor_top = 0.128
 anchor_right = 0.07
 anchor_bottom = 0.128
-offset_left = -29.64
-offset_top = -41.944
-offset_right = 29.36
-offset_bottom = 42.296
+offset_left = -68.64
+offset_top = 192.056
+offset_right = -9.64
+offset_bottom = 276.296
 
 [node name="下家牌数显示" parent="." instance=ExtResource("3_dwm8v")]
 layout_mode = 1
@@ -201,14 +177,149 @@ anchor_left = 0.94
 anchor_top = 0.128
 anchor_right = 0.94
 anchor_bottom = 0.128
-offset_left = -29.8801
-offset_top = -41.944
-offset_right = 29.1199
-offset_bottom = 42.296
+offset_left = 4.12
+offset_top = 190.056
+offset_right = 63.12
+offset_bottom = 274.296
+
+[node name="玩家牌数显示" parent="." instance=ExtResource("3_dwm8v")]
+layout_mode = 1
+anchor_left = 0.94
+anchor_top = 0.128
+anchor_right = 0.94
+anchor_bottom = 0.128
+offset_left = -897.88
+offset_top = 407.056
+offset_right = -838.88
+offset_bottom = 491.296
+
+[node name="背景播放器" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_t0sj7")
+autoplay = true
+
+[node name="音效播放器" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_fdjet")
+max_polyphony = 5
+
+[node name="人声播报播放器" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_t0sj7")
+max_polyphony = 5
+
+[node name="提示播报播放器" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_t0sj7")
+max_polyphony = 5
+
+[node name="玩家时钟倒计时" parent="." instance=ExtResource("8_d6qxc")]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.332
+anchor_top = 0.659
+anchor_right = 0.392
+anchor_bottom = 0.765
+offset_left = 0.53598
+offset_top = -0.0320129
+offset_right = 0.415985
+offset_bottom = 0.279968
+
+[node name="上家时钟倒计时" parent="." instance=ExtResource("8_d6qxc")]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.332
+anchor_top = 0.659
+anchor_right = 0.392
+anchor_bottom = 0.765
+offset_left = -309.464
+offset_top = -142.032
+offset_right = -309.584
+offset_bottom = -141.72
+
+[node name="下家时钟倒计时" parent="." instance=ExtResource("8_d6qxc")]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.332
+anchor_top = 0.659
+anchor_right = 0.392
+anchor_bottom = 0.765
+offset_left = 633.536
+offset_top = -142.032
+offset_right = 633.416
+offset_bottom = -141.72
+
+[node name="打出牌堆" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 205.0
+offset_top = 269.0
+offset_right = 818.0
+offset_bottom = 385.0
+theme_override_constants/separation = 35
+alignment = 1
+
+[node name="底牌展示" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 324.0
+offset_right = 731.0
+offset_bottom = 107.0
+theme_override_constants/separation = 115
+alignment = 1
+
+[node name="玩家按钮" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 509.0
+offset_top = 490.0
+offset_right = 663.0
+offset_bottom = 541.0
+
+[node name="打出按钮" type="Button" parent="玩家按钮"]
+layout_mode = 2
+offset_left = -65.0
+offset_top = -58.0
+offset_right = 74.0
+offset_bottom = 17.0
+focus_mode = 0
+theme_override_colors/font_disabled_color = Color(0.169245, 0.169245, 0.169245, 1)
+theme_override_colors/icon_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_hover_color = Color(0.666569, 0.666569, 0.666569, 1)
+theme_override_colors/icon_pressed_color = Color(0.336608, 0.336608, 0.336608, 1)
+theme_override_colors/font_focus_color = Color(0.666569, 0.666569, 0.666569, 1)
+theme_override_colors/font_pressed_color = Color(0.336608, 0.336608, 0.336608, 1)
+theme_override_constants/outline_size = 0
+theme_override_fonts/font = ExtResource("5_rgkx0")
+theme_override_font_sizes/font_size = 32
+text = "打出"
+icon = ExtResource("6_fdjet")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="不要按钮" type="Button" parent="玩家按钮"]
+layout_mode = 2
+offset_left = 74.0
+offset_top = -58.0
+offset_right = 213.0
+offset_bottom = 17.0
+focus_mode = 0
+theme_override_colors/font_disabled_color = Color(0.169245, 0.169245, 0.169245, 1)
+theme_override_colors/icon_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_hover_color = Color(0.666569, 0.666569, 0.666569, 1)
+theme_override_colors/icon_pressed_color = Color(0.336608, 0.336608, 0.336608, 1)
+theme_override_colors/font_focus_color = Color(0.666569, 0.666569, 0.666569, 1)
+theme_override_colors/font_pressed_color = Color(0.336608, 0.336608, 0.336608, 1)
+theme_override_fonts/font = ExtResource("5_rgkx0")
+theme_override_font_sizes/font_size = 32
+text = "不要"
+icon = ExtResource("6_fdjet")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="结算界面" parent="." instance=ExtResource("9_f8sub")]
+visible = false
+layout_mode = 1
 
 [connection signal="item_rect_changed" from="." to="." method="_on_item_rect_changed"]
-[connection signal="button_down" from="发牌按钮" to="." method="_on_发牌按钮_button_down"]
-[connection signal="button_down" from="排序按钮" to="." method="_on_排序按钮_button_down"]
 [connection signal="button_down" from="重发" to="." method="_on_重发_button_down"]
-[connection signal="button_down" from="打出" to="." method="打出牌"]
 [connection signal="timeout" from="发牌计时器" to="." method="_on_发牌计时器_timeout"]
+[connection signal="button_down" from="玩家按钮/打出按钮" to="." method="_on_打出按钮_button_down"]

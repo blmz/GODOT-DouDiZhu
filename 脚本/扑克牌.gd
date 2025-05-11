@@ -1,6 +1,5 @@
 extends Panel
 
-
 signal 鼠标进入(对象:Panel)
 signal 鼠标离开(对象:Panel)
 
@@ -12,7 +11,7 @@ signal 鼠标离开(对象:Panel)
 @onready var 选择图标=$"选择图标"
 
 @export_range(0,500) var 旋转速度:float=100
-@export_range(0,1000) var 运动速度:=500.0
+@export_range(0,1000) var 运动速度:=1000.0
 
 var 文件地址="res://扑克牌图片/"
 var 牌:扑克牌类

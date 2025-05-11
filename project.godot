@@ -15,9 +15,17 @@ run/main_scene="res://场景/手牌管理器.tscn"
 config/features=PackedStringArray("4.4", "Mobile")
 config/icon="res://icon.svg"
 
+[display]
+
+window/stretch/mode="viewport"
+
 [filesystem]
 
 import/blender/enabled=false
+
+[global_group]
+
+"测试"=""
 
 [rendering]
 
