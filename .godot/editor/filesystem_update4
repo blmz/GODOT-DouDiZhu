@@ -1,6 +1,9 @@
-res://脚本/手牌管理器.gd
 res://场景/手牌管理器.tscn
+res://脚本/手牌管理器.gd
 res://场景/扑克牌.tscn
 res://场景/牌数显示.tscn
 res://场景/时钟倒计时.tscn
 res://场景/结算界面.tscn
+res://场景/开始页面.tscn
+res://脚本/人机出牌类.gd
+res://脚本/扑克牌类.gd

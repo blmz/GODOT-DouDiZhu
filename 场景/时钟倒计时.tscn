@@ -28,4 +28,6 @@ vertical_alignment = 1
 
 [node name="计时器" type="Timer" parent="."]
 
+[node name="音频播放器" type="AudioStreamPlayer" parent="."]
+
 [connection signal="timeout" from="计时器" to="." method="_on_计时器_timeout"]

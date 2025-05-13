@@ -1,0 +1,595 @@
+[gd_scene load_steps=17 format=3 uid="uid://tqedjud5d2od"]
+
+[ext_resource type="Script" uid="uid://bdb52ah68hl8c" path="res://脚本/开始页面.gd" id="1_4lypx"]
+[ext_resource type="Texture2D" uid="uid://cm15jkw1lea3h" path="res://UI图片/斗地主主页图.png" id="1_x8cwo"]
+[ext_resource type="Texture2D" uid="uid://c7gfga1s58b4m" path="res://UI图片/欢乐斗地主图标.png" id="2_p5xyi"]
+[ext_resource type="PackedScene" uid="uid://d4nkrk234va2i" path="res://场景/手牌管理器.tscn" id="2_w2mjq"]
+[ext_resource type="FontFile" uid="uid://bsft4jeg18jpk" path="res://字体/尔雅新大黑_爱给网_aigei_com.ttf" id="3_en5y3"]
+[ext_resource type="Texture2D" uid="uid://b3qu630fxysr0" path="res://UI图片/斗地主按钮.png" id="4_4lypx"]
+[ext_resource type="AudioStream" uid="uid://borhtraa50s4r" path="res://音频/bgm3.mp3" id="7_w0dst"]
+[ext_resource type="Texture2D" uid="uid://bghk001c6agqe" path="res://UI图片/商店图片.png" id="8_5da4s"]
+[ext_resource type="Texture2D" uid="uid://b58mw38ntla3f" path="res://UI图片/开关图标_开.png" id="9_6450t"]
+[ext_resource type="Texture2D" uid="uid://ci8mav80kgt2w" path="res://UI图片/开关图标_关.png" id="10_fcoy6"]
+[ext_resource type="Texture2D" uid="uid://ccdqlilm7us7j" path="res://UI图片/音乐字样.png" id="11_6450t"]
+[ext_resource type="Texture2D" uid="uid://b7fn2o25qqmgo" path="res://UI图片/关闭图标.png" id="12_fcoy6"]
+
+[sub_resource type="Animation" id="Animation_3p4if"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("图标:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(281, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("图标:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(32, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("图标:size:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(491, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("图标:size:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(227, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("开始游戏:size:x")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(139, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("开始游戏:size:y")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(75, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/6/type = "bezier"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("设置:size:x")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(139, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/7/type = "bezier"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("设置:size:y")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(75, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/8/type = "bezier"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("退出游戏:size:x")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(139, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/9/type = "bezier"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("退出游戏:size:y")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(75, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/10/type = "bezier"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("开始游戏:position:x")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(459, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/11/type = "bezier"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("开始游戏:position:y")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(307, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/12/type = "bezier"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("设置:position:x")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(459, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/13/type = "bezier"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("设置:position:y")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(382, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/14/type = "bezier"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("退出游戏:position:x")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(459, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/15/type = "bezier"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("退出游戏:position:y")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(457, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_p5xyi"]
+resource_name = "图标扭动"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("图标:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
+"points": PackedFloat32Array(281, -0.25, 0, 0.25, 0, 349, -0.25, 0, 0.25, 0, 281, -0.25, 0, 0.25, 0, 349, -0.25, 0, 0.25, 0, 281, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.00333333, 0.36, 0.8, 1.24, 1.68)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("图标:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
+"points": PackedFloat32Array(32, -0.25, 0, 0.25, 0, 32, -0.25, 0, 0.25, 0, 32, -0.25, 0, 0.25, 0, 32, -0.25, 0, 0.25, 0, 32, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.00333333, 0.36, 0.8, 1.24, 1.68)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("图标:size:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
+"points": PackedFloat32Array(491, -0.25, 0, 0.25, 0, 390, -0.25, 0, 0.25, 0, 491, -0.25, 0, 0.25, 0, 390, -0.25, 0, 0.25, 0, 491, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.00333333, 0.36, 0.8, 1.24, 1.68)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("图标:size:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
+"points": PackedFloat32Array(227, -0.25, 0, 0.25, 0, 228, -0.25, 0, 0.25, 0, 227, -0.25, 0, 0.25, 0, 228, -0.25, 0, 0.25, 0, 227, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.00333333, 0.36, 0.8, 1.24, 1.68)
+}
+
+[sub_resource type="Animation" id="Animation_w2mjq"]
+resource_name = "进场动画"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("图标:size:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(242, -0.25, 0, 0.25, 0, 491, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("图标:size:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(112, -0.25, 0, 0.25, 0, 227, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("图标:position:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(428, -0.25, 0, 0.25, 0, 281, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("图标:position:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-280, -0.25, 0, 0.25, 0, 32, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("开始游戏:size:x")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(139, -0.25, 0, 0.25, 0, 139, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("开始游戏:size:y")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(75, -0.25, 0, 0.25, 0, 75, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/6/type = "bezier"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("设置:size:x")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(139, -0.25, 0, 0.25, 0, 139, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/7/type = "bezier"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("设置:size:y")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(75, -0.25, 0, 0.25, 0, 75, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/8/type = "bezier"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("退出游戏:size:x")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(139, -0.25, 0, 0.25, 0, 139, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/9/type = "bezier"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("退出游戏:size:y")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(75, -0.25, 0, 0.25, 0, 75, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/10/type = "bezier"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("开始游戏:position:x")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(459, -0.25, 0, 0.25, 0, 459, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/11/type = "bezier"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("开始游戏:position:y")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(719, -0.25, 0, 0.25, 0, 307, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/12/type = "bezier"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("设置:position:x")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(459, -0.25, 0, 0.25, 0, 459, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/13/type = "bezier"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("设置:position:y")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(794, -0.25, 0, 0.25, 0, 382, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/14/type = "bezier"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("退出游戏:position:x")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(459, -0.25, 0, 0.25, 0, 459, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/15/type = "bezier"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("退出游戏:position:y")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(869, -0.25, 0, 0.25, 0, 457, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_en5y3"]
+_data = {
+&"RESET": SubResource("Animation_3p4if"),
+&"图标扭动": SubResource("Animation_p5xyi"),
+&"进场动画": SubResource("Animation_w2mjq")
+}
+
+[node name="开始页面" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4lypx")
+"游戏主场景" = ExtResource("2_w2mjq")
+
+[node name="背景" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = -0.022
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 0.256001
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_x8cwo")
+expand_mode = 1
+
+[node name="图标" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 345.677
+offset_top = 32.0
+offset_right = 740.613
+offset_bottom = 259.951
+pivot_offset = Vector2(246, 114)
+texture = ExtResource("2_p5xyi")
+expand_mode = 1
+
+[node name="动画播放器" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_en5y3")
+}
+
+[node name="开始游戏" type="Button" parent="."]
+layout_mode = 0
+offset_left = 459.0
+offset_top = 307.0
+offset_right = 598.0
+offset_bottom = 382.0
+focus_mode = 0
+theme_override_colors/font_disabled_color = Color(0.169245, 0.169245, 0.169245, 1)
+theme_override_colors/icon_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_hover_color = Color(0.666569, 0.666569, 0.666569, 1)
+theme_override_colors/icon_pressed_color = Color(0.336608, 0.336608, 0.336608, 1)
+theme_override_colors/font_focus_color = Color(0.666569, 0.666569, 0.666569, 1)
+theme_override_colors/font_pressed_color = Color(0.336608, 0.336608, 0.336608, 1)
+theme_override_constants/outline_size = 0
+theme_override_fonts/font = ExtResource("3_en5y3")
+theme_override_font_sizes/font_size = 32
+text = "开始游戏"
+icon = ExtResource("4_4lypx")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="设置" type="Button" parent="."]
+layout_mode = 0
+offset_left = 459.0
+offset_top = 382.0
+offset_right = 598.0
+offset_bottom = 457.0
+focus_mode = 0
+theme_override_colors/font_disabled_color = Color(0.169245, 0.169245, 0.169245, 1)
+theme_override_colors/icon_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_hover_color = Color(0.666569, 0.666569, 0.666569, 1)
+theme_override_colors/icon_pressed_color = Color(0.336608, 0.336608, 0.336608, 1)
+theme_override_colors/font_focus_color = Color(0.666569, 0.666569, 0.666569, 1)
+theme_override_colors/font_pressed_color = Color(0.336608, 0.336608, 0.336608, 1)
+theme_override_constants/outline_size = 0
+theme_override_fonts/font = ExtResource("3_en5y3")
+theme_override_font_sizes/font_size = 32
+text = "设置"
+icon = ExtResource("4_4lypx")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="退出游戏" type="Button" parent="."]
+layout_mode = 0
+offset_left = 459.0
+offset_top = 457.0
+offset_right = 598.0
+offset_bottom = 532.0
+focus_mode = 0
+theme_override_colors/font_disabled_color = Color(0.169245, 0.169245, 0.169245, 1)
+theme_override_colors/icon_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_hover_color = Color(0.666569, 0.666569, 0.666569, 1)
+theme_override_colors/icon_pressed_color = Color(0.336608, 0.336608, 0.336608, 1)
+theme_override_colors/font_focus_color = Color(0.666569, 0.666569, 0.666569, 1)
+theme_override_colors/font_pressed_color = Color(0.336608, 0.336608, 0.336608, 1)
+theme_override_constants/outline_size = 0
+theme_override_fonts/font = ExtResource("3_en5y3")
+theme_override_font_sizes/font_size = 32
+text = "退出游戏
+"
+icon = ExtResource("4_4lypx")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="音乐播放器" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_w0dst")
+autoplay = true
+
+[node name="设置界面" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 157.0
+offset_top = 32.0
+offset_right = 971.0
+offset_bottom = 599.0
+texture = ExtResource("8_5da4s")
+expand_mode = 1
+
+[node name="音乐开关" type="CheckButton" parent="设置界面"]
+layout_mode = 0
+offset_left = 91.0
+offset_top = 275.0
+offset_right = 356.0
+offset_bottom = 338.0
+focus_mode = 0
+theme_override_icons/checked = ExtResource("9_6450t")
+theme_override_icons/unchecked = ExtResource("10_fcoy6")
+button_pressed = true
+icon = ExtResource("11_6450t")
+
+[node name="退出" type="Button" parent="设置界面"]
+layout_mode = 0
+offset_left = 757.0
+offset_top = 99.0
+offset_right = 856.0
+offset_bottom = 246.0
+focus_mode = 0
+icon = ExtResource("12_fcoy6")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="音量滑块" type="HSlider" parent="设置界面"]
+layout_mode = 0
+offset_left = 383.0
+offset_top = 291.0
+offset_right = 699.0
+offset_bottom = 320.0
+value = 100.0
+
+[node name="LinkButton" type="LinkButton" parent="设置界面"]
+layout_mode = 0
+offset_left = 302.0
+offset_top = 484.0
+offset_right = 468.0
+offset_bottom = 539.0
+theme_override_colors/font_color = Color(0.592157, 0.376471, 0.294118, 1)
+theme_override_font_sizes/font_size = 40
+text = "作者主页"
+uri = "https://space.bilibili.com/162666214"
+
+[connection signal="button_down" from="开始游戏" to="." method="开始游戏"]
+[connection signal="button_down" from="设置" to="." method="设置"]
+[connection signal="button_down" from="退出游戏" to="." method="退出游戏"]
+[connection signal="toggled" from="设置界面/音乐开关" to="." method="on_音乐开关_pressed"]
+[connection signal="button_down" from="设置界面/退出" to="." method="设置"]
+[connection signal="drag_ended" from="设置界面/音量滑块" to="." method="音量滑动"]

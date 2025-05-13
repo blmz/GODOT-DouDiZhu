@@ -32,4 +32,5 @@ func 再来一次按钮按下():
     再来一次.emit()
 
 func 退出游戏按钮按下():
+    get_tree().change_scene_to_file("res://场景/开始页面.tscn")
     退出游戏.emit()

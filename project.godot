@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="斗地主"
-run/main_scene="res://场景/手牌管理器.tscn"
+run/main_scene="uid://tqedjud5d2od"
 config/features=PackedStringArray("4.4", "Mobile")
 config/icon="res://icon.svg"
+
+[autoload]
+
+"人机出牌"="*res://脚本/人机出牌类.gd"
 
 [display]
 

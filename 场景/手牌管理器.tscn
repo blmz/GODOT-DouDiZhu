@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://d4nkrk234va2i"]
+[gd_scene load_steps=20 format=3 uid="uid://d4nkrk234va2i"]
 
 [ext_resource type="Script" uid="uid://2lb2bwrcj4du" path="res://脚本/手牌管理器.gd" id="1_tnola"]
 [ext_resource type="PackedScene" uid="uid://tautr4ao3iu8" path="res://场景/扑克牌.tscn" id="2_io782"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://b3qu630fxysr0" path="res://UI图片/斗地主按钮.png" id="6_fdjet"]
 [ext_resource type="AudioStream" uid="uid://dxao7d4d3sa7m" path="res://音频/bgm1.mp3" id="6_t0sj7"]
 [ext_resource type="AudioStream" uid="uid://x7y6ls5rvgvs" path="res://音频/bgm2.mp3" id="7_fdjet"]
+[ext_resource type="Texture2D" uid="uid://xmolcqmj0kps" path="res://UI图片/地主帽子.png" id="8_70o2x"]
 [ext_resource type="PackedScene" uid="uid://debalulncpwo5" path="res://场景/时钟倒计时.tscn" id="8_d6qxc"]
 [ext_resource type="PackedScene" uid="uid://cr0la6sfh50us" path="res://场景/结算界面.tscn" id="9_f8sub"]
 
@@ -15,11 +16,217 @@
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 2
 
+[sub_resource type="Animation" id="Animation_slo7k"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("地主帽子:size:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(124, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("地主帽子:size:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(109, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("地主帽子:position:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(37, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("地主帽子:position:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(359, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_0k5hv"]
+resource_name = "上家地主"
+length = 1.5
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("地主帽子:size:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(22, -0.25, 0, 0.25, 0, 253, -0.25, 0, 0.25, 0, 132, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1.03333, 1.50333)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("地主帽子:size:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(30, -0.25, 0, 0.25, 0, 202, -0.25, 0, 0.25, 0, 108, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1.03333, 1.50333)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("地主帽子:position:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(576, -0.25, 0, 0.25, 0, 440, -0.25, 0, 0.25, 0, 87, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1.03333, 1.50333)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("地主帽子:position:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(229, -0.25, 0, 0.25, 0, 146, -0.25, 0, 0.25, 0, 29, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1.03333, 1.50333)
+}
+
+[sub_resource type="Animation" id="Animation_mctp1"]
+resource_name = "下家地主"
+length = 1.5
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("地主帽子:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(576, -0.25, 0, 0.25, 0, 459, -0.25, 0, 0.25, 0, 987, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1.13333, 1.50333)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("地主帽子:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(229, -0.25, 0, 0.25, 0, 132, -0.25, 0, 0.25, 0, 46, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1.13333, 1.50333)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("地主帽子:size:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(22, -0.25, 0, 0.25, 0, 253, -0.25, 0, 0.25, 0, 111, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1.13333, 1.50333)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("地主帽子:size:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(30, -0.25, 0, 0.25, 0, 220, -0.25, 0, 0.25, 0, 91, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1.13333, 1.50333)
+}
+
+[sub_resource type="Animation" id="Animation_wg3wp"]
+resource_name = "玩家地主"
+length = 1.5
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("地主帽子:size:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(28, -0.25, 0, 0.25, 0, 216, -0.25, 0, 0.25, 0, 124, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1.06667, 1.5)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("地主帽子:size:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(30, -0.25, 0, 0.25, 0, 199, -0.25, 0, 0.25, 0, 109, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1.06667, 1.5)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("地主帽子:position:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(570, -0.25, 0, 0.25, 0, 473, -0.25, 0, 0.25, 0, 37, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1.06667, 1.5)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("地主帽子:position:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(229, -0.25, 0, 0.25, 0, 155, -0.25, 0, 0.25, 0, 359, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1.06667, 1.5)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jlhmb"]
+_data = {
+&"RESET": SubResource("Animation_slo7k"),
+&"上家地主": SubResource("Animation_0k5hv"),
+&"下家地主": SubResource("Animation_mctp1"),
+&"玩家地主": SubResource("Animation_wg3wp")
+}
+
 [sub_resource type="Curve2D" id="Curve2D_c4sjh"]
 _data = {
 "points": PackedVector2Array(-67.8069, -1.27748, 0, 0, -350, 0, 0, 0, 109.225, 6.40215, 350, 1.698)
 }
 point_count = 2
+
+[sub_resource type="LabelSettings" id="LabelSettings_70o2x"]
+font = ExtResource("5_rgkx0")
+font_size = 56
+font_color = Color(0.988281, 0.461871, 0.096888, 1)
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
 
 [node name="手牌管理器" type="Control"]
 layout_mode = 3
@@ -33,6 +240,29 @@ script = ExtResource("1_tnola")
 "选择分散曲线" = SubResource("Curve_dg5hf")
 "选择分散距离" = 50.0
 "扑克牌" = ExtResource("2_io782")
+
+[node name="背景播放器" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_t0sj7")
+autoplay = true
+
+[node name="音效播放器" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_fdjet")
+max_polyphony = 5
+
+[node name="人声播报播放器" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_t0sj7")
+max_polyphony = 5
+
+[node name="提示播报播放器" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_t0sj7")
+max_polyphony = 5
+
+[node name="发牌计时器" type="Timer" parent="."]
+
+[node name="动画播放器" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_jlhmb")
+}
 
 [node name="背景" type="TextureRect" parent="."]
 layout_mode = 1
@@ -118,48 +348,6 @@ offset_top = 38.0
 offset_right = 327.0
 offset_bottom = 213.0
 
-[node name="重发" type="Button" parent="." groups=["测试"]]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.902
-anchor_top = 0.373
-anchor_right = 0.992
-anchor_bottom = 0.421
-offset_left = -699.104
-offset_top = 204.296
-offset_right = -698.784
-offset_bottom = 204.192
-text = "重发"
-
-[node name="当前选择" type="Label" parent="." groups=["测试"]]
-visible = false
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.934
-anchor_top = 0.563
-anchor_right = 0.969
-anchor_bottom = 0.597
-offset_left = 0.0319824
-offset_top = 0.175995
-offset_right = -0.288086
-offset_bottom = 1.14401
-
-[node name="玩家选择列表" type="Label" parent="." groups=["测试"]]
-visible = false
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.18
-anchor_top = 0.063
-anchor_right = 0.626
-anchor_bottom = 0.167
-offset_left = -0.360016
-offset_top = 0.175999
-offset_right = -0.152039
-offset_bottom = -0.216003
-autowrap_mode = 1
-
-[node name="发牌计时器" type="Timer" parent="."]
-
 [node name="上家牌数显示" parent="." instance=ExtResource("3_dwm8v")]
 layout_mode = 1
 anchor_left = 0.07
@@ -192,22 +380,6 @@ offset_left = -897.88
 offset_top = 407.056
 offset_right = -838.88
 offset_bottom = 491.296
-
-[node name="背景播放器" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("6_t0sj7")
-autoplay = true
-
-[node name="音效播放器" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("7_fdjet")
-max_polyphony = 5
-
-[node name="人声播报播放器" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("6_t0sj7")
-max_polyphony = 5
-
-[node name="提示播报播放器" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("6_t0sj7")
-max_polyphony = 5
 
 [node name="玩家时钟倒计时" parent="." instance=ExtResource("8_d6qxc")]
 visible = false
@@ -265,6 +437,16 @@ offset_bottom = 107.0
 theme_override_constants/separation = 115
 alignment = 1
 
+[node name="地主帽子" type="TextureRect" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 37.0
+offset_top = 359.0
+offset_right = 161.0
+offset_bottom = 468.0
+texture = ExtResource("8_70o2x")
+expand_mode = 1
+
 [node name="玩家按钮" type="Control" parent="."]
 anchors_preset = 0
 offset_left = 509.0
@@ -319,7 +501,34 @@ expand_icon = true
 visible = false
 layout_mode = 1
 
+[node name="玩家文字显示" type="Label" parent="."]
+layout_mode = 0
+offset_left = 178.0
+offset_top = 410.0
+offset_right = 346.0
+offset_bottom = 478.0
+text = "抢地主"
+label_settings = SubResource("LabelSettings_70o2x")
+
+[node name="下家文字显示" type="Label" parent="."]
+layout_mode = 0
+offset_left = 726.0
+offset_top = 271.0
+offset_right = 894.0
+offset_bottom = 339.0
+text = "抢地主"
+label_settings = SubResource("LabelSettings_70o2x")
+
+[node name="上家文字显示" type="Label" parent="."]
+layout_mode = 0
+offset_left = 256.0
+offset_top = 270.0
+offset_right = 424.0
+offset_bottom = 338.0
+text = "抢地主"
+label_settings = SubResource("LabelSettings_70o2x")
+
 [connection signal="item_rect_changed" from="." to="." method="_on_item_rect_changed"]
-[connection signal="button_down" from="重发" to="." method="_on_重发_button_down"]
 [connection signal="timeout" from="发牌计时器" to="." method="_on_发牌计时器_timeout"]
 [connection signal="button_down" from="玩家按钮/打出按钮" to="." method="_on_打出按钮_button_down"]
+[connection signal="button_down" from="玩家按钮/不要按钮" to="." method="_on_不要按钮_button_down"]

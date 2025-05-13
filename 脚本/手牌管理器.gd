@@ -6,16 +6,22 @@ extends Control
 @onready var 人声播报播放器:AudioStreamPlayer = $"人声播报播放器"
 @onready var 提示播报播放器:AudioStreamPlayer = $"提示播报播放器"
 
+#计时器
+@onready var 玩家时钟倒计时 = $"玩家时钟倒计时"
+@onready var 上家时钟倒计时 = $"上家时钟倒计时"
+@onready var 下家时钟倒计时 = $"下家时钟倒计时"
 #UI
 @onready var 中心点:Control = $"中心点"
 @onready var 手牌线点 = $"手牌排列线/手牌线/手牌线点"
-@onready var 当前选择 = $"当前选择"
-@onready var 玩家选择列表UI = $"玩家选择列表"
 @onready var 打出牌堆 = $"打出牌堆"
 @onready var 底牌展示 = $"底牌展示"
 @onready var 打出按钮 = $"玩家按钮/打出按钮"
 @onready var 不要按钮 = $"玩家按钮/不要按钮"
 @onready var 结算界面 = $"结算界面"
+@onready var 地主帽子 =  $"地主帽子"
+@onready var 玩家文字显示 = $"玩家文字显示"
+@onready var 上家文字显示 = $"上家文字显示"
+@onready var 下家文字显示 = $"下家文字显示"
 
 #曲线
 @export var 选择上升曲线: Curve
@@ -32,18 +38,20 @@ extends Control
 @onready var 上家牌数显示 = $"上家牌数显示"
 @onready var 下家牌数显示 = $"下家牌数显示"
 @onready var 玩家牌数显示 = $"玩家牌数显示"
+@onready var 动画播放器 = $"动画播放器"
 
 #扑克牌场景
 @export var 扑克牌: PackedScene
 
 enum 牌手{
+    空,
     上家,
     下家,
     玩家
 }
 
 #回合相关
-var 地主牌手:牌手
+var 地主牌手:牌手 = 牌手.空
 var 农民牌手:Array[牌手]
 
 #牌堆
@@ -61,13 +69,9 @@ var 发牌数 := 0
 var 操作禁止 := true
 
 #出牌相关
-var 当前选择牌: Node:
-    set(值): # 当值被改变时执行函数
-        当前选择牌 = 值
-        if (值 == null):
-            当前选择.text = "未选择"
-        else:
-            当前选择.text = 值.牌.花色 + 值.牌.点数
+var 当前选择牌: Node
+var 是否在抢地主: bool = false
+var 上一个牌型:扑克牌类.牌型信息 = 扑克牌类.牌型信息.new()
 
 func _process(_delta: float):
     pass
@@ -76,6 +80,7 @@ func _input(event: InputEvent):
     点击牌(event)
 
 func _ready():
+
     结算界面.再来一次.connect(开始游戏)
     开始游戏()
 
@@ -102,14 +107,17 @@ func 重置场景():
     初始化牌堆()
     背景播放器.stream = load("res://音频/bgm1.mp3")
     背景播放器.play()
+    玩家文字显示.text = ""
+    上家文字显示.text = ""
+    下家文字显示.text = ""
+    打出按钮.visible = false
+    不要按钮.visible = false
     结算界面.visible = false
     发牌数 = 0
     是否发牌 = false
     操作禁止 = true
     发牌计时器.stop()
     当前选择牌 = null
-    当前选择.text = "未选择"
-    玩家选择列表UI.text = "玩家选择的牌:"
 
 #重新把牌移动到位置列表中对应的位置
 func 重置位置(位置列表:Array[Vector2]):
@@ -173,6 +181,7 @@ func 玩家发牌(牌型:扑克牌类):
     牌.position = 中心点.position
     牌.rotation_degrees = 0
     重置位置(计算位置(玩家手牌列表.size()))
+    牌堆牌数显示.更新牌数(初始牌堆.size())
 
 #给对家发一张扑克牌
 func 对家发牌(对家:Node, 牌型:扑克牌类):
@@ -187,6 +196,9 @@ func 对家发牌(对家:Node, 牌型:扑克牌类):
         下家手牌列表.append(牌)
     elif 对家.name == "上家点":
         上家手牌列表.append(牌)
+    牌堆牌数显示.更新牌数(初始牌堆.size())
+    下家牌数显示.更新牌数(下家手牌列表.size())
+    上家牌数显示.更新牌数(上家手牌列表.size())
 
 #把玩家的手牌按照斗地主的牌点数花色大小从右到左排列
 func 排序手牌():
@@ -207,7 +219,6 @@ func 排序手牌():
         牌.position = i.position
         牌.rotation_degrees = 0
     重置位置(计算位置(玩家手牌列表.size()))
-    操作禁止 = false
 
 #创建一副扑克牌，并打乱它
 func 初始化牌堆():
@@ -235,9 +246,7 @@ func 发牌():
     音效播放器.stream = load("res://音频/发牌音效.mp3")
     if !音效播放器.playing:
         音效播放器.play()
-    牌堆牌数显示.更新牌数(初始牌堆.size())
-    下家牌数显示.更新牌数(下家手牌列表.size())
-    上家牌数显示.更新牌数(上家手牌列表.size())
+
 
 func 发底牌(对象:牌手):
     var 底牌堆: Array[扑克牌类] = 初始牌堆.duplicate()
@@ -260,15 +269,18 @@ func 发底牌(对象:牌手):
     排序手牌()
 
 func 牌手打出牌(打出牌手:牌手,牌手选择列表:Array[Node]):
-    if 牌手选择列表.size() == 0:
-        return
     var 打出牌信息:扑克牌类.牌型信息 = 扑克牌类.判断牌型(扑克牌类.类型转换(牌手选择列表))
+    print(打出牌手,"打出了",打出牌信息.牌型)
+    上一个牌型 = 打出牌信息
     if 打出牌信息.牌型 == "无牌型":
+        人声播报播放器.stream = load("res://音频/不要.mp3")
+        人声播报播放器.play()
         return 0
     牌型播报(打出牌信息)
     if 打出牌信息.牌型 == "炸弹" or 打出牌信息.牌型 == "王炸":
-        背景播放器.stream = load("res://音频/bgm2.mp3")
-        背景播放器.play()
+        if 背景播放器.stream.resource_path != "res://音频/bgm2.mp3":
+            背景播放器.stream = load("res://音频/bgm2.mp3")
+            背景播放器.play()
     print("%s打出了%s,头点数是%s,尾点数是%s" %[打出牌手,打出牌信息.牌型,打出牌信息.头点数,打出牌信息.尾点数])
     var 牌手手牌列表
     match 打出牌手:
@@ -330,7 +342,7 @@ func 牌手打出牌(打出牌手:牌手,牌手选择列表:Array[Node]):
     音效播放器.play()
 
 func 游戏结束(赢家:牌手):
-    if 赢家:
+    if (赢家==地主牌手 and 赢家==牌手.玩家) or (牌手.玩家 !=  地主牌手 and 赢家!=地主牌手):#玩家是地主且赢家是玩家则胜利,或者玩家不是地主且赢家不是地主则胜利
         结算界面.胜利()
         背景播放器.stream=load("res://音频/胜利.mp3")
     else:
@@ -358,8 +370,7 @@ func 点击牌(event):
                     玩家选择列表.erase(当前选择牌)
                 var 牌列表: Array[String] = []
                 for 牌 in 玩家选择列表:
-                    牌列表.append(牌.牌.花色 + 牌.牌.点数)
-                玩家选择列表UI.text = "玩家选择的牌:" + str(牌列表)
+                     牌列表.append(牌.牌.花色 + 牌.牌.点数)
 
 func 牌型播报(牌型信息:扑克牌类.牌型信息):
     var 头点数 = str(扑克牌类.点数列表.find(牌型信息.头点数)+3)
@@ -384,8 +395,137 @@ func 牌型播报(牌型信息:扑克牌类.牌型信息):
         人声播报播放器.stream = load(音频地址)
         人声播报播放器.play()
 
+func 开始抢地主():
+    是否在抢地主 = true
+    玩家回合开始()
+
+func 抢地主结束():
+    发底牌(地主牌手)
+    地主帽子.visible = true
+    match 地主牌手:
+        牌手.玩家:
+            动画播放器.play("玩家地主")
+        牌手.上家:
+            动画播放器.play("上家地主")
+        牌手.下家:
+            动画播放器.play("下家地主")
+    var 牌手列表:Array[牌手] =[牌手.玩家,牌手.上家,牌手.下家]
+    操作禁止 = true
+    打出按钮.visible = false
+    不要按钮.visible = false
+    #等待3秒
+    await get_tree().create_timer(2.0).timeout
+    玩家文字显示.text = ""
+    上家文字显示.text = ""
+    下家文字显示.text = ""
+    牌手列表.erase(地主牌手)
+    农民牌手 = 牌手列表.duplicate()
+    是否在抢地主 = false
+    match 地主牌手:
+        牌手.玩家:
+            玩家回合开始()
+        牌手.上家:
+            上家回合开始()
+        牌手.下家:
+            下家回合开始()
+
+func 玩家回合开始():
+    #print(人机出牌类.获取牌型列表(扑克牌类.类型转换(玩家手牌列表),扑克牌类.牌型信息.new("顺子","3","7")))
+    打出按钮.visible = true
+    不要按钮.visible = true
+    操作禁止 = false
+    if 是否在抢地主:
+        打出按钮.text = "叫地主"
+        不要按钮.text = "不叫"
+    else:
+        打出按钮.text = "出牌"
+        不要按钮.text = "不要"
+    玩家时钟倒计时.开始计时()
+
+func 玩家回合结束():
+    操作禁止 = true
+    玩家时钟倒计时.停止计时()
+    打出按钮.visible = false
+    不要按钮.visible = false
+    下家回合开始()
+
+func 下家回合开始():
+    var 随机等待时间  = 20-3
+    下家时钟倒计时.开始计时()
+    下家时钟倒计时.标记时间= 随机等待时间
+    #等待
+    await 下家时钟倒计时.标记时间到
+    if 是否在抢地主:
+        if 地主牌手 != 牌手.玩家:
+            if randi() % 2 == 0:
+                地主牌手 = 牌手.下家
+                提示播报播放器.stream = load("res://音频/抢地主.mp3")
+                下家文字显示.text = "抢地主"
+            else:
+                提示播报播放器.stream = load("res://音频/不抢.mp3")
+                下家文字显示.text = "不抢"
+        else:
+            提示播报播放器.stream = load("res://音频/不抢.mp3")
+            下家文字显示.text = "不抢"
+        提示播报播放器.play()
+    else:
+        牌手打出牌(牌手.下家,人机出牌类.人机出牌(下家手牌列表,上一个牌型))
+        if 上一个牌型.牌型 == 扑克牌类.牌型列表.无牌型:
+            下家文字显示.text = "不要"
+        else:
+            下家文字显示.text = ""
+    下家时钟倒计时.停止计时()
+    上家回合开始()
+
+func 上家回合开始():
+    var 随机等待时间  = 20- 3
+    上家时钟倒计时.开始计时()
+    上家时钟倒计时.标记时间= 随机等待时间
+    await 上家时钟倒计时.标记时间到
+    if 是否在抢地主:
+        if 地主牌手 != 牌手.玩家 and 地主牌手 != 牌手.下家:
+            地主牌手 = 牌手.上家
+            提示播报播放器.stream = load("res://音频/抢地主.mp3")
+            上家文字显示.text = "抢地主"
+        else: 
+            提示播报播放器.stream = load("res://音频/不抢.mp3")
+            上家文字显示.text = "不抢"
+        提示播报播放器.play()
+        抢地主结束()
+        return
+    else:
+        牌手打出牌(牌手.上家,人机出牌类.人机出牌(上家手牌列表,上一个牌型))
+        if 上一个牌型.牌型 == 扑克牌类.牌型列表.无牌型:
+            上家文字显示.text = "不要"
+        else:
+            上家文字显示.text = ""
+    上家时钟倒计时.停止计时()
+    玩家回合开始()
+    
+
 func _on_打出按钮_button_down():
+    if 是否在抢地主:
+        地主牌手 = 牌手.玩家
+        提示播报播放器.stream = load("res://音频/叫地主.mp3")
+        提示播报播放器.play()
+        玩家文字显示.text = "叫地主"
+        玩家回合结束()
+        return
     牌手打出牌(牌手.玩家,玩家选择列表)
+    玩家文字显示.text = ""
+    玩家回合结束()
+
+func _on_不要按钮_button_down():
+    if 是否在抢地主:
+        地主牌手 = 牌手.上家
+        提示播报播放器.stream = load("res://音频/不叫.mp3")
+        提示播报播放器.play()
+        玩家文字显示.text = "不叫"
+        玩家回合结束()
+        return
+    玩家文字显示.text = "不要"
+    牌手打出牌(牌手.玩家,[])
+    玩家回合结束()
 
 func _on_发牌按钮_button_down():
     开始发牌()
@@ -397,7 +537,8 @@ func _on_发牌计时器_timeout():
     if (!是否发牌):
         发牌计时器.stop()
         是否发牌 = false
-        发底牌(牌手.玩家)
+        排序手牌()
+        开始抢地主()
     else:
         发牌()
 
@@ -408,3 +549,7 @@ func _on_item_rect_changed():
 func _on_重发_button_down():
     重置场景()
     开始发牌()
+
+func 计时结束(计时名称: String):
+    if 计时名称 == "玩家时钟倒计时":
+        玩家回合结束()

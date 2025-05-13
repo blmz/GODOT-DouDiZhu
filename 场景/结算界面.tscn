@@ -482,38 +482,37 @@ offset_bottom = -9.72009
 
 [node name="左彩带" type="TextureRect" parent="."]
 layout_mode = 0
-offset_left = -246.0
-offset_top = 716.0
-offset_right = -83.0
-offset_bottom = 880.0
+offset_top = 155.0
+offset_right = 491.0
+offset_bottom = 648.0
 texture = ExtResource("1_7mckl")
 expand_mode = 1
 flip_h = true
 
 [node name="右彩带" type="TextureRect" parent="."]
 layout_mode = 0
-offset_left = 1262.0
-offset_top = 757.0
-offset_right = 1432.0
-offset_bottom = 917.0
+offset_left = 663.0
+offset_top = 155.0
+offset_right = 1150.0
+offset_bottom = 646.0
 texture = ExtResource("1_7mckl")
 expand_mode = 1
 
 [node name="胜负图片" type="TextureRect" parent="."]
 layout_mode = 0
-offset_left = 378.0
-offset_top = -313.0
-offset_right = 740.0
-offset_bottom = -188.0
+offset_left = 169.0
+offset_top = 46.0
+offset_right = 948.0
+offset_bottom = 315.0
 texture = ExtResource("1_gufqb")
 expand_mode = 1
 
 [node name="退出" type="Button" parent="."]
 layout_mode = 0
 offset_left = 459.0
-offset_top = 831.0
+offset_top = 446.0
 offset_right = 641.0
-offset_bottom = 915.0
+offset_bottom = 530.0
 pivot_offset = Vector2(91, 42)
 focus_mode = 0
 theme_override_colors/font_hover_color = Color(0.660156, 0.660156, 0.660156, 1)
@@ -531,9 +530,9 @@ expand_icon = true
 [node name="再来一次" type="Button" parent="."]
 layout_mode = 0
 offset_left = 441.0
-offset_top = 716.0
+offset_top = 331.0
 offset_right = 661.0
-offset_bottom = 800.0
+offset_bottom = 415.0
 pivot_offset = Vector2(91, 42)
 focus_mode = 0
 theme_override_colors/font_hover_color = Color(0.660156, 0.660156, 0.660156, 1)

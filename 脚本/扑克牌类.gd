@@ -3,8 +3,8 @@ class_name 扑克牌类
 var 花色:String
 var 点数:String
 
-static  var 点数列表:Array[String] = ["3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A", "2", "小王", "大王"]
-static  var 花色列表:Array[String] = ["红桃", "方片", "黑桃", "梅花"]
+static var 点数列表:Array[String] = ["3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A", "2", "小王", "大王"]
+static var 花色列表:Array[String] = ["红桃", "方片", "黑桃", "梅花"]
 
 static var 牌型列表={
     无牌型="无牌型",
@@ -31,7 +31,6 @@ class 牌型信息:
         牌型=牌型参数
         头点数=头点数参数
         尾点数=尾点数参数
-
 func _init(花色参数="",点数参数=""):
     花色=花色参数
     点数=点数参数
@@ -193,7 +192,8 @@ static func 是飞机(点数组:Array) -> bool:
 
 ## 比较扑克牌大小
 static func 比较扑克大小(牌一, 牌二) -> bool:
-    # 1. 统一类型处理（支持Node和扑克牌类直接比较）
+    if 牌一 is String and 牌二 is String:
+        return 点数列表.find(牌一) < 点数列表.find(牌二)
     var 牌1: 扑克牌类
     if (牌一 is Node):
         牌1 = 牌一.牌 as 扑克牌类
@@ -219,6 +219,10 @@ static func 比较扑克大小(牌一, 牌二) -> bool:
 static func 比较牌型大小(牌型一:牌型信息, 牌型二:牌型信息) -> bool:
     var 牌型一头点数 = 点数列表.find(牌型一.头点数)
     var 牌型二头点数 = 点数列表.find(牌型二.头点数)
+    if 牌型一.牌型 == "无牌型":
+        return true
+    if 牌型二.牌型 == "无牌型":
+        return true
     return 牌型一头点数 < 牌型二头点数
 
 ##生成一个扑克牌牌堆,是否打乱:是否将扑克牌打乱，默认是true。结果将会返回一个扑克牌牌堆
@@ -241,7 +245,6 @@ static func 类型转换(输入列表:Array[Node])->Array[扑克牌类]:
 
 
 static func 统计(输入数组:Array)-> Dictionary:
-    
     var 统计字典:Dictionary={}
     for 元素 in 输入数组:
         if 统计字典.has(元素):
