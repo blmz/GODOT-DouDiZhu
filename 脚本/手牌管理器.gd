@@ -80,7 +80,7 @@ func _input(event: InputEvent):
     点击牌(event)
 
 func _ready():
-
+    玩家时钟倒计时.connect("计时结束", 计时结束)
     结算界面.再来一次.connect(开始游戏)
     开始游戏()
 
@@ -397,6 +397,7 @@ func 牌型播报(牌型信息:扑克牌类.牌型信息):
 
 func 开始抢地主():
     是否在抢地主 = true
+    操作禁止 = true
     玩家回合开始()
 
 func 抢地主结束():
@@ -435,6 +436,7 @@ func 玩家回合开始():
     不要按钮.visible = true
     操作禁止 = false
     if 是否在抢地主:
+        操作禁止 = true
         打出按钮.text = "叫地主"
         不要按钮.text = "不叫"
     else:
@@ -448,7 +450,7 @@ func 玩家回合结束():
     打出按钮.visible = false
     不要按钮.visible = false
     下家回合开始()
-
+ 
 func 下家回合开始():
     var 随机等待时间  = 20-3
     下家时钟倒计时.开始计时()
@@ -552,4 +554,5 @@ func _on_重发_button_down():
 
 func 计时结束(计时名称: String):
     if 计时名称 == "玩家时钟倒计时":
-        玩家回合结束()
+        _on_不要按钮_button_down()
+        
